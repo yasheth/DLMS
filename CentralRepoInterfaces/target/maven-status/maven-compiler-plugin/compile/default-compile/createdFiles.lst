@@ -1,0 +1,3 @@
+centralRepo\interfaces\HostEnum.class
+centralRepo\interfaces\Repository.class
+centralRepo\interfaces\RepositoryOperationEnum.class
