@@ -1,0 +1,96 @@
+2019.02.19.14.33.28 : Concordia Server is Online
+2019.02.19.14.33.28 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.33.28 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.02.19.14.33.28 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.02.19.14.34.14 : CONM1111 connected to the server
+2019.02.19.14.34.26 : CONM1111 added CON6231 :Distributed, Quantity: 2 ADDITEM - COMPLETED
+2019.02.19.14.34.36 : CONM1111 added CON7654 :APP, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.34.53 : MONU1234 borrowed CON6231 from the library.  BORROW - COMPLETED
+2019.02.19.14.35.19 : MONU1234 requested to find Book with title 'Distributed' from the library.
+2019.03.02.17.45.24 : Concordia Server is Back Online!
+
+2019.03.02.17.45.24 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.45.24 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.45.24 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.45.51 : CONU0001 connected to the server
+2019.03.02.17.45.57 : CONU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.02.17.46.00 : CONU0001 requested to find Book with title 'java' from the library.
+2019.03.02.17.46.06 : CONU0001 already has CON1234 borrowed from the library. BORROW - FAILED
+2019.03.02.17.46.11 : CONU0001 returned CON1234 to the library. RETURN - COMPLETED
+2019.03.02.17.46.14 : CONU0001 requested to find Book with title 'java' from the library.
+2019.03.02.17.46.28 : 
+Borrow Request forwarded to Concordia Server
+2019.03.02.17.49.44 : Concordia Server is Back Online!
+
+2019.03.02.17.49.44 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.49.44 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.49.44 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.50.03 : CONU9999 connected to the server
+2019.03.02.17.50.06 : CONU9999 requested to find Book with title 'java' from the library.
+2019.03.02.17.50.11 : 
+Borrow Request forwarded to McGill Server
+2019.03.02.17.50.55 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.51.08 : 
+Borrow Request forwarded to McGill Server
+2019.03.02.17.53.46 : Concordia Server is Back Online!
+
+2019.03.02.17.53.46 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.53.46 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.53.46 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.54.03 : CONU9999 connected to the server
+2019.03.02.17.54.06 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.02.17.54.24 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.54.36 : 
+Borrow Request forwarded to McGill Server
+2019.03.02.17.54.38 : CONU9999 added to waitlist of MCG0001 in the library.
+2019.03.02.17.54.53 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.00 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.25 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.35 : 
+Borrow Request forwarded to McGill Server
+2019.03.02.17.55.40 : CONU9999 added to waitlist of MCG0001 in the library.
+2019.03.02.17.55.46 : 
+Borrow Request forwarded to McGill Server
+2019.03.02.17.55.59 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.18.21.00 : Concordia Server is Back Online!
+
+2019.03.02.18.21.00 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.18.21.00 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.18.21.00 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.18.21.38 : CONU9999 connected to the server
+2019.03.02.18.21.45 : 
+Borrow Request forwarded to McGill Server
+2019.03.02.18.21.46 : CONU9999 added to waitlist of MCG0001 in the library.
+2019.03.02.18.21.50 : 
+Borrow Request forwarded to McGill Server
+2019.03.02.18.22.02 : MCGU9999 requested to find Book with title 'init' from the library.
+2019.03.02.18.22.31 : 
+Borrow Request forwarded to McGill Server
+2019.03.02.18.23.14 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.03.14.09.42 : Concordia Server is Back Online!
+
+2019.03.03.14.09.42 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.03.14.09.42 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.03.14.09.42 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.03.14.10.18 : CONU7878 connected to the server
+2019.03.03.14.10.23 : CONU7878 requested to find Book with title 'init' from the library.
+2019.03.03.14.10.34 : CONU7878 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.03.14.10.48 : CONU7878 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.03.14.10.48 : CONU7878 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.03.14.10.48 : Exchange Sequence Successfull
+2019.03.03.14.10.58 : CONU7878 requested to find Book with title 'init' from the library.
+2019.03.03.14.11.02 : CONU7878 requested to find Book with title 'java' from the library.
+2019.03.03.14.11.45 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.03.14.11.59 : CONU7878 returned CON1234 to the library. RETURN - COMPLETED
+2019.03.03.14.11.59 : 
+Borrow Request forwarded to McGill Server
+2019.03.03.14.11.59 : Exchange Sequence Successfull
+2019.03.03.14.12.09 : CONU7878 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.03.14.12.09 : Exchange Sequence Successfull
+2019.03.03.14.12.20 : CONU7878 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.03.14.12.20 : 
+Borrow Request forwarded to McGill Server
+2019.03.03.14.12.20 : Exchange Sequence Successfull
+2019.03.03.14.12.29 : 
+Borrow Request forwarded to McGill Server
+2019.03.03.14.12.29 : Exchange Sequence Successfull

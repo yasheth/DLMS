@@ -1,0 +1,10 @@
+MCGU1234 LOG FILE
+User is Online
+2019.02.19.14.36.57 : Connected to McGill Library Server.
+Welcome MCGU1234
+2019.02.19.14.37.49 : Disconnected!
+2019.02.19.14.38.52 : User is Back Online!
+
+2019.02.19.14.38.52 : Connected to McGill Library Server.
+Welcome MCGU1234
+2019.02.19.14.40.01 : Book returned Successfully.

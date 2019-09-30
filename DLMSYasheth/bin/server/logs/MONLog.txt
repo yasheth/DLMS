@@ -1,0 +1,11 @@
+2019.02.19.14.33.39 : Montreal Server is Online
+2019.02.19.14.33.39 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.33.39 : Server added MON5555 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.02.19.14.33.39 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.02.19.14.34.48 : MONU1234 connected to the server
+2019.02.19.14.34.53 : 
+Borrow Request forwarded to Concordia Server
+2019.02.19.14.34.59 : 
+Borrow Request forwarded to McGill Server
+2019.02.19.14.35.19 : MONU1234 requested to find Book with title 'Distributed' from the library.
+2019.02.19.14.38.03 : MONU1234 connected to the server

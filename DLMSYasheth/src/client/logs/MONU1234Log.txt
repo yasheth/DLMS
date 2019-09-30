@@ -1,0 +1,16 @@
+MONU1234 LOG FILE
+User is Online
+2019.02.19.14.34.48 : Connected to Montreal Library Server.
+Welcome MONU1234
+2019.02.19.14.34.53 : MONU1234 borrowed CON6231 from the library. Happy Reading!
+2019.02.19.14.34.59 : MONU1234 borrowed MCG6231 from the library. Happy Reading!
+2019.02.19.14.35.10 : You already have borrowed 1 book from Concordia Library.
+2019.02.19.14.35.19 : MCG6231 : Distributed, Quantity:- 0
+CON6231 : Distributed, Quantity:- 1
+2019.02.19.14.36.33 : Disconnected!
+2019.02.19.14.38.03 : User is Back Online!
+
+2019.02.19.14.38.03 : Connected to Montreal Library Server.
+Welcome MONU1234
+2019.02.19.14.38.17 : Book returned Successfully.
+2019.02.19.14.38.36 : Disconnected!

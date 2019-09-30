@@ -1,0 +1,51 @@
+2019.02.19.14.33.39 : Montreal Server is Online
+2019.02.19.14.33.39 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.33.39 : Server added MON5555 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.02.19.14.33.39 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.02.19.14.34.48 : MONU1234 connected to the server
+2019.02.19.14.34.53 : 
+Borrow Request forwarded to Concordia Server
+2019.02.19.14.34.59 : 
+Borrow Request forwarded to McGill Server
+2019.02.19.14.35.19 : MONU1234 requested to find Book with title 'Distributed' from the library.
+2019.02.19.14.38.03 : MONU1234 connected to the server
+2019.03.02.17.45.30 : Montreal Server is Back Online!
+
+2019.03.02.17.45.30 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.45.30 : Server added MON5555 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.45.30 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.46.00 : CONU0001 requested to find Book with title 'java' from the library.
+2019.03.02.17.46.14 : CONU0001 requested to find Book with title 'java' from the library.
+2019.03.02.17.49.49 : Montreal Server is Back Online!
+
+2019.03.02.17.49.49 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.49.49 : Server added MON5555 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.49.49 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.50.06 : CONU9999 requested to find Book with title 'java' from the library.
+2019.03.02.17.50.55 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.53.51 : Montreal Server is Back Online!
+
+2019.03.02.17.53.51 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.53.51 : Server added MON5555 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.53.51 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.54.06 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.02.17.54.24 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.54.53 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.00 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.25 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.59 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.18.21.06 : Montreal Server is Back Online!
+
+2019.03.02.18.21.06 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.18.21.06 : Server added MON5555 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.18.21.06 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.18.22.02 : MCGU9999 requested to find Book with title 'init' from the library.
+2019.03.02.18.23.14 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.03.14.09.59 : Montreal Server is Back Online!
+
+2019.03.03.14.09.59 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.03.14.09.59 : Server added MON5555 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.03.14.09.59 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.03.14.10.23 : CONU7878 requested to find Book with title 'init' from the library.
+2019.03.03.14.10.58 : CONU7878 requested to find Book with title 'init' from the library.
+2019.03.03.14.11.02 : CONU7878 requested to find Book with title 'java' from the library.

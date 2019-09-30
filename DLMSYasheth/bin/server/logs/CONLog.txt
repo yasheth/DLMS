@@ -1,0 +1,9 @@
+2019.02.19.14.33.28 : Concordia Server is Online
+2019.02.19.14.33.28 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.33.28 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.02.19.14.33.28 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.02.19.14.34.14 : CONM1111 connected to the server
+2019.02.19.14.34.26 : CONM1111 added CON6231 :Distributed, Quantity: 2 ADDITEM - COMPLETED
+2019.02.19.14.34.36 : CONM1111 added CON7654 :APP, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.34.53 : MONU1234 borrowed CON6231 from the library.  BORROW - COMPLETED
+2019.02.19.14.35.19 : MONU1234 requested to find Book with title 'Distributed' from the library.

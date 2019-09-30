@@ -1,0 +1,18 @@
+MCGM2222 LOG FILE
+Manager is Online
+2019.02.19.14.33.49 : Connected to McGill Library Server.
+Welcome MCGM2222
+2019.02.19.14.34.00 : MCGM2222 added MCG6231 :Distributed, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.34.03 : Disconnected!
+2019.02.19.14.40.29 : Manager is Back Online!
+
+2019.02.19.14.40.29 : Connected to McGill Library Server.
+Welcome MCGM2222
+2019.02.19.14.40.37 : 
+
+------LIST OF BOOKS IN LIBRARY------
+MCG0001 :init , Quantity:- 1
+MCG4444 :mcg , Quantity:- 10
+MCG1234 :java , Quantity:- 100
+MCG6231 :Distributed , Quantity:- 0
+

@@ -1,0 +1,12 @@
+MCGU9999 LOG FILE
+User is Online
+2019.03.02.18.21.15 : Connected to McGill Library Server.
+Welcome MCGU9999
+2019.03.02.18.21.20 : MCGU9999 requested MCCG0001 from the library. Item not found. BORROW - FAILED
+2019.03.02.18.21.27 : MCGU9999 borrowed MCG0001 from the library. Happy Reading!
+2019.03.02.18.21.59 : Book returned Successfully.
+2019.03.02.18.22.02 : MCG0001 : init, Quantity:- 1
+CON0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.02.18.23.25 : Book returned Successfully.
+2019.03.02.18.23.29 : MCGU9999 borrowed MCG0001 from the library. Happy Reading!

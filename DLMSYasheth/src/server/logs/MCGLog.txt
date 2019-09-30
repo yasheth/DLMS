@@ -1,0 +1,97 @@
+2019.02.19.14.33.34 : McGill Server is Online
+2019.02.19.14.33.34 : Server added MCG0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.33.34 : Server added MCG4444 :mcg, Quantity: 10 ADDITEM - COMPLETED
+2019.02.19.14.33.34 : Server added MCG1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.02.19.14.33.49 : MCGM2222 connected to the server
+2019.02.19.14.34.00 : MCGM2222 added MCG6231 :Distributed, Quantity: 1 ADDITEM - COMPLETED
+2019.02.19.14.34.59 : MONU1234 borrowed MCG6231 from the library.  BORROW - COMPLETED
+2019.02.19.14.35.19 : MONU1234 requested to find Book with title 'Distributed' from the library.
+2019.02.19.14.36.57 : MCGU1234 connected to the server
+2019.02.19.14.37.04 : MCGU1234 requested MCG6231 from the library. No copies available.  BORROW - FAILED
+2019.02.19.14.37.05 : MCGU1234 added to waitlist of MCG6231 in the library.
+2019.02.19.14.38.17 : MONU1234 returned MCG6231 to the library. RETURN - COMPLETED
+2019.02.19.14.38.52 : MCGU1234 connected to the server
+2019.02.19.14.39.11 : MCGU1234 requested MCG6231 from the library. No copies available.  BORROW - FAILED
+2019.02.19.14.39.20 : MCGU1234 added to waitlist of MCG6231 in the library.
+2019.02.19.14.40.01 : MCGU1234 returned MCG6231 to the library. RETURN - COMPLETED
+2019.02.19.14.40.29 : MCGM2222 connected to the server
+2019.02.19.14.40.37 : MCGM2222 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.02.17.45.36 : McGill Server is Back Online!
+
+2019.03.02.17.45.36 : Server added MCG0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.45.36 : Server added MCG4444 :mcg, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.45.36 : Server added MCG1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.46.00 : CONU0001 requested to find Book with title 'java' from the library.
+2019.03.02.17.46.14 : CONU0001 requested to find Book with title 'java' from the library.
+2019.03.02.17.49.53 : McGill Server is Back Online!
+
+2019.03.02.17.49.54 : Server added MCG0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.49.54 : Server added MCG4444 :mcg, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.49.54 : Server added MCG1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.50.06 : CONU9999 requested to find Book with title 'java' from the library.
+2019.03.02.17.50.11 : CONU9999 borrowed MCG1234 from the library.  BORROW - COMPLETED
+2019.03.02.17.50.26 : CONU9999 returned MCG1234 to the library. RETURN - COMPLETED
+2019.03.02.17.50.45 : MCGU8888 connected to the server
+2019.03.02.17.50.50 : MCGU8888 borrowed MCG0001 from the library.  BORROW - COMPLETED
+2019.03.02.17.50.55 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.51.08 : CONU9999 requested MCG0001 from the library. No copies available.  BORROW - FAILED
+2019.03.02.17.53.42 : McGill Server is Back Online!
+
+2019.03.02.17.53.42 : Server added MCG0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.17.53.42 : Server added MCG4444 :mcg, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.17.53.42 : Server added MCG1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.17.54.06 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.02.17.54.18 : MCGU8888 connected to the server
+2019.03.02.17.54.22 : MCGU8888 borrowed MCG0001 from the library.  BORROW - COMPLETED
+2019.03.02.17.54.24 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.54.36 : CONU9999 requested MCG0001 from the library. No copies available.  BORROW - FAILED
+2019.03.02.17.54.38 : CONU9999 added to waitlist of MCG0001 in the library.
+2019.03.02.17.54.48 : MCGU8888 returned MCG0001 to the library. RETURN - COMPLETED
+2019.03.02.17.54.53 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.00 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.05 : CONU9999 returned MCG0001 to the library. RETURN - COMPLETED
+2019.03.02.17.55.25 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.55.29 : MCGU8888 borrowed MCG0001 from the library.  BORROW - COMPLETED
+2019.03.02.17.55.35 : CONU9999 requested MCG0001 from the library. No copies available.  BORROW - FAILED
+2019.03.02.17.55.40 : CONU9999 added to waitlist of MCG0001 in the library.
+2019.03.02.17.55.46 : CONU9999 borrowed MCG1234 from the library.  BORROW - COMPLETED
+2019.03.02.17.55.56 : MCGU8888 returned MCG0001 to the library. RETURN - COMPLETED
+2019.03.02.17.55.59 : MCGU8888 requested to find Book with title 'init' from the library.
+2019.03.02.17.56.17 : CONU9999 returned MCG0001 to the library. RETURN - COMPLETED
+2019.03.02.17.56.23 : CONU9999 returned MCG1234 to the library. RETURN - COMPLETED
+2019.03.02.18.20.50 : McGill Server is Back Online!
+
+2019.03.02.18.20.50 : Server added MCG0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.02.18.20.50 : Server added MCG4444 :mcg, Quantity: 10 ADDITEM - COMPLETED
+2019.03.02.18.20.50 : Server added MCG1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.02.18.21.15 : MCGU9999 connected to the server
+2019.03.02.18.21.20 : MCGU9999 requested MCCG0001 from the library. Item not found. BORROW - FAILED
+2019.03.02.18.21.27 : MCGU9999 borrowed MCG0001 from the library.  BORROW - COMPLETED
+2019.03.02.18.21.45 : CONU9999 requested MCG0001 from the library. No copies available.  BORROW - FAILED
+2019.03.02.18.21.46 : CONU9999 added to waitlist of MCG0001 in the library.
+2019.03.02.18.21.50 : CONU9999 borrowed MCG1234 from the library.  BORROW - COMPLETED
+2019.03.02.18.21.59 : MCGU9999 returned MCG0001 to the library. RETURN - COMPLETED
+2019.03.02.18.22.02 : MCGU9999 requested to find Book with title 'init' from the library.
+2019.03.02.18.22.24 : CONU9999 returned MCG1234 to the library. RETURN - COMPLETED
+2019.03.02.18.22.31 : CONU9999 borrowed MCG0001 from the library.  BORROW - COMPLETED
+2019.03.02.18.22.58 : MCGU9999 requested MCG0001 from the library. No copies available.  BORROW - FAILED
+2019.03.02.18.22.59 : MCGU9999 added to waitlist of MCG0001 in the library.
+2019.03.02.18.23.11 : CONU9999 returned MCG0001 to the library. RETURN - COMPLETED
+2019.03.02.18.23.11 : MCGU9999in the waitlist gets MCG0001
+2019.03.02.18.23.14 : CONU9999 requested to find Book with title 'init' from the library.
+2019.03.02.18.23.25 : MCGU9999 returned MCG0001 to the library. RETURN - COMPLETED
+2019.03.02.18.23.29 : MCGU9999 borrowed MCG0001 from the library.  BORROW - COMPLETED
+2019.03.02.18.23.32 : MCGU9999 requested MCG0001 from the library. No copies available.  BORROW - FAILED
+2019.03.03.14.10.04 : McGill Server is Back Online!
+
+2019.03.03.14.10.04 : Server added MCG0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.03.14.10.04 : Server added MCG4444 :mcg, Quantity: 10 ADDITEM - COMPLETED
+2019.03.03.14.10.04 : Server added MCG1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.03.14.10.23 : CONU7878 requested to find Book with title 'init' from the library.
+2019.03.03.14.10.58 : CONU7878 requested to find Book with title 'init' from the library.
+2019.03.03.14.11.02 : CONU7878 requested to find Book with title 'java' from the library.
+2019.03.03.14.11.59 : CONU7878 borrowed MCG1234 from the library.  BORROW - COMPLETED
+2019.03.03.14.12.09 : CONU7878 returned MCG1234 to the library. RETURN - COMPLETED
+2019.03.03.14.12.20 : CONU7878 borrowed MCG1234 from the library.  BORROW - COMPLETED
+2019.03.03.14.12.29 : CONU7878 returned MCG1234 to the library. RETURN - COMPLETED
+2019.03.03.14.12.29 : CONU7878 borrowed MCG0001 from the library.  BORROW - COMPLETED

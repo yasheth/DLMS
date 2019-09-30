@@ -1,0 +1,20 @@
+CONU7878 LOG FILE
+User is Online
+2019.03.03.14.10.18 : Connected to Concordia Library Server.
+Welcome CONU7878
+2019.03.03.14.10.23 : CON0001 : init, Quantity:- 1
+MCG0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.03.14.10.34 : CONU7878 borrowed CON0001 from the library. Happy Reading!
+2019.03.03.14.10.48 : Exchange Sequence Successfull
+2019.03.03.14.10.58 : CON0001 : init, Quantity:- 1
+MCG0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.03.14.11.02 : CON1234 : java, Quantity:- 99
+MCG1234 : java, Quantity:- 100
+MON1234 : java, Quantity:- 100
+2019.03.03.14.11.45 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.03.14.11.59 : Exchange Sequence Successfull
+2019.03.03.14.12.09 : Exchange Sequence Successfull
+2019.03.03.14.12.20 : Exchange Sequence Successfull
+2019.03.03.14.12.29 : Exchange Sequence Successfull

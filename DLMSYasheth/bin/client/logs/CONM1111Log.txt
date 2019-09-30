@@ -1,0 +1,6 @@
+CONM1111 LOG FILE
+Manager is Online
+2019.02.19.14.34.14 : Connected to Concordia Library Server.
+Welcome CONM1111
+2019.02.19.14.34.26 : CONM1111 added CON6231 :Distributed, Quantity: 2 ADDITEM - COMPLETED
+2019.02.19.14.34.36 : CONM1111 added CON7654 :APP, Quantity: 1 ADDITEM - COMPLETED
