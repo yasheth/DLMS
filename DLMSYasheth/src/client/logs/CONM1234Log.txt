@@ -1,0 +1,4 @@
+CONM1234 LOG FILE
+Manager is Online
+2019.04.07.20.19.46 : Connected to Concordia Library Server.
+Welcome CONM1234

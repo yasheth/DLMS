@@ -25,23 +25,20 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import org.omg.CORBA.ORB;
-import org.omg.CosNaming.NameComponent;
-import org.omg.CosNaming.NamingContextExt;
-import org.omg.CosNaming.NamingContextExtHelper;
-import org.omg.PortableServer.POA;
-import org.omg.PortableServer.POAHelper;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.xml.ws.Endpoint;
 
 import elements.Book;
-import repository.LibraryInterface;
-import repository.LibraryInterfaceHelper;
-import repository.LibraryInterfacePOA;
+import serverinterface.LibraryInterface;
 
 /**
  * @author Yash Sheth
  *
  */
-public class MCGServer extends LibraryInterfacePOA {
+@WebService(endpointInterface = "serverinterface.LibraryInterface")
+@SOAPBinding(style = SOAPBinding.Style.RPC)
+public class MCGServer implements LibraryInterface {
 
 	static HashMap<String, Book> library = new HashMap<>();
 	static HashMap<String, ArrayList<String>> waitlist = new HashMap<>();
@@ -74,12 +71,6 @@ public class MCGServer extends LibraryInterfacePOA {
 		thread2.start();
 	}
 
-	private ORB orb;
-
-	public void setORB(ORB orb_val) {
-		orb = orb_val;
-	}
-
 	/**
 	 * @throws AlreadyBoundException
 	 * @throws IOException
@@ -87,44 +78,18 @@ public class MCGServer extends LibraryInterfacePOA {
 	 */
 	private static void activateServer(String args[]) throws AlreadyBoundException, IOException {
 
-		try {
-			// create and initialize the ORB //// get reference to rootpoa &amp;
-			// activate
-			// the POAManager
-			ORB orb = ORB.init(args, null);
-			// -ORBInitialPort 1050 -ORBInitialHost localhost
-			POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
-			rootpoa.the_POAManager().activate();
-
-			// create servant and register it with the ORB
-			mcgserver.setORB(orb);
-
-			// get object reference from the servant
-			org.omg.CORBA.Object ref = rootpoa.servant_to_reference(mcgserver);
-			LibraryInterface href = LibraryInterfaceHelper.narrow(ref);
-
-			org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-			NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-
-			NameComponent path[] = ncRef.to_name("MCG");
-			ncRef.rebind(path, href);
-
-			System.out.println("McGill Server is Online!");
-			System.out.println(mcgserver.addItem("Server", "MCG0001", "init", 1));
-			System.out.println(mcgserver.addItem("Server", "MCG9999", "mcg", 10));
-			System.out.println(mcgserver.addItem("Server", "MCG1234", "java", 100));
-
-			for (;;) {
-				orb.run();
-			}
+		if (Files.exists(Paths.get("src/server/logs/" + serverNickName + "Log.txt"))) {
+			mcgserver.writeLog("McGill Server is Back Online!\n");
+		} else {
+			PrintWriter writer = new PrintWriter("src/server/logs/" + serverNickName + "Log.txt", "UTF-8");
+			mcgserver.writeLog("McGill Server is Online");
+			writer.close();
 		}
-
-		catch (Exception e) {
-			System.err.println("ERROR: " + e);
-			e.printStackTrace(System.out);
-		}
-
-		System.out.println("MCGServer Exiting ...");
+		System.out.println("McGill Server is Online!");
+		System.out.println(mcgserver.addItem("Server", "MCG0001", "init", 1));
+		System.out.println(mcgserver.addItem("Server", "MCG9999", "con", 10));
+		System.out.println(mcgserver.addItem("Server", "MCG1234", "java", 100));
+		Endpoint endpoint = Endpoint.publish("http://localhost:4000/comp", mcgserver);
 
 	}
 
@@ -215,7 +180,7 @@ public class MCGServer extends LibraryInterfacePOA {
 	}
 
 	@Override
-	public synchronized String listItemAvailability(String managerID) {
+	public synchronized String listAvailableItems(String managerID) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n\n------LIST OF BOOKS IN LIBRARY------\n");
 		for (HashMap.Entry<String, Book> entry : library.entrySet()) {
@@ -377,7 +342,7 @@ public class MCGServer extends LibraryInterfacePOA {
 	}
 
 	@Override
-	public synchronized String addToWaitlist(String userID, String itemID) {
+	public synchronized String addToWaitingList(String userID, String itemID) {
 		if (itemID.startsWith("CON")) {
 			contactOtherServer("WAIT" + userID + itemID, 3333);
 
@@ -501,7 +466,7 @@ public class MCGServer extends LibraryInterfacePOA {
 				} else if (requestMessage.startsWith("BORR")) {
 					response = borrowItem(requestMessage.substring(4, 12), requestMessage.substring(12));
 				} else if (requestMessage.startsWith("WAIT")) {
-					response = addToWaitlist(requestMessage.substring(4, 12), requestMessage.substring(12));
+					response = addToWaitingList(requestMessage.substring(4, 12), requestMessage.substring(12));
 				} else if (requestMessage.startsWith("CHEC")) {
 					response = String.valueOf(checkBorrowedBooks(requestMessage.substring(4)));
 				} else if (requestMessage.startsWith("RETU")) {
@@ -590,7 +555,7 @@ public class MCGServer extends LibraryInterfacePOA {
 		}
 	}
 
-	@Override
+	
 	public String oldBookCheck(String userID, String itemID) {
 		if (itemID.startsWith(serverNickName)) {
 			if (borrowers.containsKey(userID)) {
@@ -604,7 +569,7 @@ public class MCGServer extends LibraryInterfacePOA {
 		return "false";
 	}
 
-	@Override
+	
 	public String newBookCheck(String userID, String itemID) {
 		if (library.containsKey(itemID)) {
 			if (library.get(itemID).getQuantity() > 0) {

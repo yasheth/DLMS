@@ -5,20 +5,23 @@ package client;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.rmi.Naming;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NamingContextExt;
 import org.omg.CosNaming.NamingContextExtHelper;
 
-import repository.LibraryInterface;
-import repository.LibraryInterfaceHelper;
+import serverinterface.LibraryInterface;
+
 
 
 /**
@@ -32,8 +35,8 @@ public class ManagerClient {
 	static String itemID, itemName;
 	static int quantity;
 	static String output;
-	static LibraryInterface obj = null;
 	static boolean valid = false;
+	static LibraryInterface libraryInterface;
 
 	/**
 	 * @param args
@@ -43,42 +46,25 @@ public class ManagerClient {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter your user ID : ");
 		userID = input.nextLine();
+		Service compService = null;
 		if (userID.toUpperCase().charAt(3) == 'M' && userID.length() == 8) {
 			if (userID.startsWith("CON")) {
-				try {
-					ORB orb = ORB.init(args, null);
-					// -ORBInitialPort 1050 -ORBInitialHost localhost
-					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("CON"));	
-				}
-				catch(Exception e) {
-					e.printStackTrace();
-				}
+				URL compURL = new URL("http://localhost:3000/comp?wsdl");
+				QName compQName = new QName("http://server/", "CONServerService");
+				compService = Service.create(compURL, compQName);
+				libraryInterface = compService.getPort(LibraryInterface.class);
 				valid = true;
 			} else if (userID.startsWith("MCG")) {
-				try {
-					ORB orb = ORB.init(args, null);
-					// -ORBInitialPort 1050 -ORBInitialHost localhost
-					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("MCG"));	
-				}
-				catch(Exception e) {
-					e.printStackTrace();
-				}
+				URL compURL = new URL("http://localhost:4000/comp?wsdl");
+				QName compQName = new QName("http://server/", "MCGServerService");
+				compService = Service.create(compURL, compQName);
+				libraryInterface = compService.getPort(LibraryInterface.class);
 				valid = true;
 			} else if (userID.startsWith("MON")) {
-				try {
-					ORB orb = ORB.init(args, null);
-					// -ORBInitialPort 1050 -ORBInitialHost localhost
-					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("MON"));	
-				}
-				catch(Exception e) {
-					e.printStackTrace();
-				}
+				URL compURL = new URL("http://localhost:5000/comp?wsdl");
+				QName compQName = new QName("http://server/", "MONServerService");
+				compService = Service.create(compURL, compQName);
+				libraryInterface = compService.getPort(LibraryInterface.class);
 				valid = true;
 			} else {
 				System.out.println("Incorrect ID.");
@@ -86,7 +72,8 @@ public class ManagerClient {
 		} else {
 			System.out.println("Invalid user ID. Run the client again. Goodbye.");
 		}
-
+		
+		
 		if (valid) {
 			if (Files.exists(Paths.get("src/client/logs/" + userID + "Log.txt"))) {
 				writeLog("Manager is Back Online!\n");
@@ -96,7 +83,7 @@ public class ManagerClient {
 				writer.close();
 			}
 
-			output = obj.connect(userID);
+			output = libraryInterface.connect(userID);
 			if (output.startsWith("true")) {
 				System.out.println(output.substring(4));
 				output = output.substring(4);
@@ -118,7 +105,7 @@ public class ManagerClient {
 						System.out.println("\nEnter No. of Quantities to Add: ");
 						quantity = input.nextInt();
 						input.nextLine();
-						output = obj.addItem(userID, itemID, itemName, quantity);
+						output = libraryInterface.addItem(userID, itemID, itemName, quantity);
 						writeLog(output);
 						System.out.println(output);
 						exit = false;
@@ -130,14 +117,14 @@ public class ManagerClient {
 						System.out.println("\nEnter No. of Quantities to Remove: ");
 						quantity = input.nextInt();
 						input.nextLine();
-						output = obj.removeItem(userID, itemID, quantity);
+						output = libraryInterface.removeItem(userID, itemID, quantity);
 						writeLog(output);
 						System.out.println(output);
 						exit = false;
 						break;
 
 					case "3":
-						output = obj.listItemAvailability(userID);
+						output = libraryInterface.listAvailableItems(userID);
 						System.out.println(output);
 						writeLog(output);
 						exit = false;

@@ -1,0 +1,20 @@
+CONU1111 LOG FILE
+User is Online
+2019.04.08.12.22.04 : Connected to Concordia Library Server.
+Welcome CONU1111
+2019.04.08.12.22.08 : CONU1111 borrowed CON1234 from the library. Happy Reading!
+2019.04.08.12.22.12 : CONU1111 already has CON1234 borrowed from the library. Check your Reading List. Happy Reading!
+2019.04.08.12.22.17 : Book returned Successfully.
+2019.04.08.12.22.20 : CON1234 : java, Quantity:- 100
+MCG1234 : java, Quantity:- 100
+MON1234 : java, Quantity:- 100
+2019.04.08.12.22.27 : CON0001 : init, Quantity:- 1
+MCG0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.04.08.12.22.36 : CONU1111 borrowed CON1234 from the library. Happy Reading!
+2019.04.08.12.22.44 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.04.08.12.23.02 : Initiating Exchange SequenceBook returned Successfully.
+CONU1111 borrowed MCG0001 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.04.08.12.23.21 : You havent borrowed any books at the moment.
+2019.04.08.12.23.27 : Book returned Successfully.

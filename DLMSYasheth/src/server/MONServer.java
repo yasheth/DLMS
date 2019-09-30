@@ -25,23 +25,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import org.omg.CORBA.ORB;
-import org.omg.CosNaming.NameComponent;
-import org.omg.CosNaming.NamingContextExt;
-import org.omg.CosNaming.NamingContextExtHelper;
-import org.omg.PortableServer.POA;
-import org.omg.PortableServer.POAHelper;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.xml.ws.Endpoint;
 
 import elements.Book;
-import repository.LibraryInterface;
-import repository.LibraryInterfaceHelper;
-import repository.LibraryInterfacePOA;
-
+import serverinterface.LibraryInterface;
 /**
  * @author Yash Sheth
  *
  */
-public class MONServer extends LibraryInterfacePOA{
+@WebService(endpointInterface = "serverinterface.LibraryInterface")
+@SOAPBinding(style = SOAPBinding.Style.RPC)
+public class MONServer implements LibraryInterface{
 
 	static HashMap<String, Book> library = new HashMap<>();
 	static HashMap<String, ArrayList<String>> waitlist = new HashMap<>();
@@ -74,11 +70,6 @@ public class MONServer extends LibraryInterfacePOA{
 		thread2.start();
 	}
 
-	private ORB orb;
-
-	public void setORB(ORB orb_val) {
-		orb = orb_val;
-	}
 	/**
 	 * @throws AlreadyBoundException
 	 * @throws IOException
@@ -86,43 +77,18 @@ public class MONServer extends LibraryInterfacePOA{
 	 */
 	private static void activateServer(String args[]) throws AlreadyBoundException, IOException {
 
-		try {
-			// create and initialize the ORB //// get reference to rootpoa &amp; activate
-			// the POAManager
-			ORB orb = ORB.init(args,null);
-			// -ORBInitialPort 6666 -ORBInitialHost localhost
-			POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
-			rootpoa.the_POAManager().activate();
-
-			// create servant and register it with the ORB
-			monserver.setORB(orb);
-
-			// get object reference from the servant
-			org.omg.CORBA.Object ref = rootpoa.servant_to_reference(monserver);
-			LibraryInterface href = LibraryInterfaceHelper.narrow(ref);
-
-			org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-			NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-
-			NameComponent path[] = ncRef.to_name("MON");
-			ncRef.rebind(path, href);
-
-			System.out.println("Montreal Server is Online!");
-			System.out.println(monserver.addItem("Server", "MON0001", "init", 1));
-			System.out.println(monserver.addItem("Server", "MON9999", "mon", 10));
-			System.out.println(monserver.addItem("Server", "MON1234", "java", 100));
-
-			for (;;) {
-				orb.run();
-			}
+		if (Files.exists(Paths.get("src/server/logs/" + serverNickName + "Log.txt"))) {
+			monserver.writeLog("Montreal Server is Back Online!\n");
+		} else {
+			PrintWriter writer = new PrintWriter("src/server/logs/" + serverNickName + "Log.txt", "UTF-8");
+			monserver.writeLog("Montreal Server is Online");
+			writer.close();
 		}
-
-		catch (Exception e) {
-			System.err.println("ERROR: " + e);
-			e.printStackTrace(System.out);
-		}
-
-		System.out.println("MONServer Exiting ...");
+		System.out.println("Montreal Server is Online!");
+		System.out.println(monserver.addItem("Server", "MON0001", "init", 1));
+		System.out.println(monserver.addItem("Server", "MON9999", "con", 10));
+		System.out.println(monserver.addItem("Server", "MON1234", "java", 100));
+		Endpoint endpoint = Endpoint.publish("http://localhost:5000/comp", monserver);
 
 	}
 
@@ -213,7 +179,7 @@ public class MONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String listItemAvailability(String managerID) {
+	public synchronized String listAvailableItems(String managerID) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n\n------LIST OF BOOKS IN LIBRARY------\n");
 		for (HashMap.Entry<String, Book> entry : library.entrySet()) {
@@ -376,7 +342,7 @@ public class MONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String addToWaitlist(String userID, String itemID) {
+	public synchronized String addToWaitingList(String userID, String itemID) {
 		if (itemID.startsWith("CON")) {
 			contactOtherServer("WAIT" + userID + itemID, 3333);
 
@@ -500,7 +466,7 @@ public class MONServer extends LibraryInterfacePOA{
 				} else if (requestMessage.startsWith("BORR")) {
 					response = borrowItem(requestMessage.substring(4, 12), requestMessage.substring(12));
 				} else if (requestMessage.startsWith("WAIT")) {
-					response = addToWaitlist(requestMessage.substring(4, 12), requestMessage.substring(12));
+					response = addToWaitingList(requestMessage.substring(4, 12), requestMessage.substring(12));
 				} else if (requestMessage.startsWith("CHEC")) {
 					response = String.valueOf(checkBorrowedBooks(requestMessage.substring(4)));
 				} else if (requestMessage.startsWith("RETU")) {
@@ -591,7 +557,7 @@ public class MONServer extends LibraryInterfacePOA{
 		}
 	}
 
-	@Override
+	
 	public String oldBookCheck(String userID, String itemID) {
 		if (itemID.startsWith(serverNickName)) {
 			if (borrowers.containsKey(userID)) {
@@ -605,7 +571,7 @@ public class MONServer extends LibraryInterfacePOA{
 		return "false";
 	}
 
-	@Override
+	
 	public String newBookCheck(String userID, String itemID) {
 		if (library.containsKey(itemID)) {
 			if (library.get(itemID).getQuantity() > 0) {

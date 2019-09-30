@@ -6,6 +6,7 @@ package client;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -14,12 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import org.omg.CORBA.ORB;
-import org.omg.CosNaming.NamingContextExt;
-import org.omg.CosNaming.NamingContextExtHelper;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 
-import repository.LibraryInterface;
-import repository.LibraryInterfaceHelper;
+import serverinterface.LibraryInterface;
+
 
 
 /**
@@ -33,7 +33,7 @@ public class UserClient {
 	static String itemID, itemName;
 	static int quantity;
 	static String output;
-	static LibraryInterface obj = null;
+	static LibraryInterface libraryInterface;
 	static boolean valid = false;
 
 	/**
@@ -46,46 +46,25 @@ public class UserClient {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter your user ID : ");
 		userID = input.nextLine();
+		Service compService = null;
 		if (userID.toUpperCase().charAt(3) == 'U' && userID.length() == 8) {
 			if (userID.startsWith("CON")) {
-		
-				try {
-					ORB orb = ORB.init(args, null);
-					// -ORBInitialPort 1050 -ORBInitialHost localhost
-					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("CON"));	
-				}
-				catch(Exception e) {
-					e.printStackTrace();
-				}
-				
+				URL compURL = new URL("http://localhost:3000/comp?wsdl");
+				QName compQName = new QName("http://server/", "CONServerService");
+				compService = Service.create(compURL, compQName);
+				libraryInterface = compService.getPort(LibraryInterface.class);
 				valid = true;
 			} else if (userID.startsWith("MCG")) {
-
-				try {
-					ORB orb = ORB.init(args, null);
-					// -ORBInitialPort 1050 -ORBInitialHost localhost
-					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("MCG"));	
-				}
-				catch(Exception e) {
-					e.printStackTrace();
-				}
+				URL compURL = new URL("http://localhost:4000/comp?wsdl");
+				QName compQName = new QName("http://server/", "MCGServerService");
+				compService = Service.create(compURL, compQName);
+				libraryInterface = compService.getPort(LibraryInterface.class);
 				valid = true;
 			} else if (userID.startsWith("MON")) {
-
-				try {
-					ORB orb = ORB.init(args, null);
-					// -ORBInitialPort 1050 -ORBInitialHost localhost
-					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("MON"));	
-				}
-				catch(Exception e) {
-					e.printStackTrace();
-				}
+				URL compURL = new URL("http://localhost:5000/comp?wsdl");
+				QName compQName = new QName("http://server/", "MONServerService");
+				compService = Service.create(compURL, compQName);
+				libraryInterface = compService.getPort(LibraryInterface.class);
 				valid = true;
 			} else {
 				System.out.println("Incorrect ID.");
@@ -103,7 +82,7 @@ public class UserClient {
 				writer.close();
 			}
 
-			output=obj.connect(userID);
+			output=libraryInterface.connect(userID);
 			if (output.startsWith("true")) {
 				System.out.println(output.substring(4));
 				output = output.substring(4);
@@ -121,13 +100,13 @@ public class UserClient {
 					case "1":
 						System.out.println("\nEnter Book ID: ");
 						itemID = input.nextLine();
-						output = obj.borrowItem(userID, itemID);
+						output = libraryInterface.borrowItem(userID, itemID);
 
 						if (output.equals("waitlist")) {
 							System.out.println("\nBook " + itemID+ " not available. You want to be added to the waitlist? \nY for Yes. N for No.");
 							String reply = input.nextLine();
 							if (reply.equalsIgnoreCase("Y")) {
-								System.out.println(obj.addToWaitlist(userID, itemID));
+								System.out.println(libraryInterface.addToWaitingList(userID, itemID));
 							} else {
 								System.out.println("Sorry we couldnt serve you. Try again next time.");
 								break;
@@ -141,7 +120,7 @@ public class UserClient {
 					case "2":
 						System.out.println("\nEnter Book ID: ");
 						itemID = input.nextLine();
-						output = obj.returnItem(userID, itemID);
+						output = libraryInterface.returnItem(userID, itemID);
 						System.out.println(output);
 						writeLog(output);
 						break;
@@ -149,7 +128,7 @@ public class UserClient {
 					case "3":
 						System.out.println("\nEnter Book Name: ");
 						itemName = input.nextLine();
-						output = obj.findItem(userID, itemName);
+						output = libraryInterface.findItem(userID, itemName);
 						System.out.println("Result for Find "+itemName+"\n"+output);
 						writeLog(output);
 						break;
@@ -158,9 +137,9 @@ public class UserClient {
 						System.out.println("Exchange Information");
 						System.out.println("\nEnter Old Book ID: ");
 						String oldItemID = input.nextLine();
-						System.out.println("\nEnter New Book ID: ");
+						System.out.println("\nEnter Old Book ID: ");
 						String newItemID = input.nextLine();
-						output=obj.exchangeItem(userID, oldItemID, newItemID);
+						output=libraryInterface.exchangeItem(userID, newItemID, oldItemID);
 						System.out.println(output);
 						writeLog(output);
 						break;

@@ -14,33 +14,26 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
-import java.rmi.Remote;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import org.omg.CORBA.ORB;
-import org.omg.CosNaming.NameComponent;
-import org.omg.CosNaming.NamingContextExt;
-import org.omg.CosNaming.NamingContextExtHelper;
-import org.omg.PortableServer.POA;
-import org.omg.PortableServer.POAHelper;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+import javax.xml.ws.Endpoint;
 
 import elements.Book;
-import repository.LibraryInterface;
-import repository.LibraryInterfaceHelper;
-import repository.LibraryInterfacePOA;
+import serverinterface.LibraryInterface;
 
 /**
  * @author Yash Sheth
  *
  */
-public class CONServer extends LibraryInterfacePOA{
+@WebService(endpointInterface = "serverinterface.LibraryInterface")
+@SOAPBinding(style = SOAPBinding.Style.RPC)
+public class CONServer implements LibraryInterface {
 
 	static HashMap<String, Book> library = new HashMap<>();
 	static HashMap<String, ArrayList<String>> waitlist = new HashMap<>();
@@ -72,60 +65,30 @@ public class CONServer extends LibraryInterfacePOA{
 		thread.start();
 		thread2.start();
 	}
-	private ORB orb;
 
-	public void setORB(ORB orb_val) {
-		orb = orb_val;
-	}
 	/**
 	 * @throws AlreadyBoundException
 	 * @throws IOException
 	 * 
 	 */
 	private static void activateServer(String args[]) throws AlreadyBoundException, IOException {
-
-		try {
-			// create and initialize the ORB //// get reference to rootpoa &amp; activate
-			// the POAManager
-			ORB orb = ORB.init(args,null);
-			// -ORBInitialPort 1050 -ORBInitialHost localhost
-			POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
-			rootpoa.the_POAManager().activate();
-
-			// create servant and register it with the ORB
-			conserver.setORB(orb);
-
-			// get object reference from the servant
-			org.omg.CORBA.Object ref = rootpoa.servant_to_reference(conserver);
-			LibraryInterface href = LibraryInterfaceHelper.narrow(ref);
-
-			org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
-			NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
-
-			NameComponent path[] = ncRef.to_name("CON");
-			ncRef.rebind(path, href);
-
-			System.out.println("Concordia Server is Online!");
-			System.out.println(conserver.addItem("Server", "CON0001", "init", 1));
-			System.out.println(conserver.addItem("Server", "CON9999", "con", 10));
-			System.out.println(conserver.addItem("Server", "CON1234", "java", 100));
-
-			for (;;) {
-				orb.run();
-			}
+		if (Files.exists(Paths.get("src/server/logs/" + serverNickName + "Log.txt"))) {
+			conserver.writeLog("Concordia Server is Back Online!\n");
+		} else {
+			PrintWriter writer = new PrintWriter("src/server/logs/" + serverNickName + "Log.txt", "UTF-8");
+			conserver.writeLog("Concordia Server is Online");
+			writer.close();
 		}
-
-		catch (Exception e) {
-			System.err.println("ERROR: " + e);
-			e.printStackTrace(System.out);
-		}
-
-		System.out.println("CONServer Exiting ...");
+		System.out.println("Concordia Server is Online!");
+		System.out.println(conserver.addItem("Server", "CON0001", "init", 1));
+		System.out.println(conserver.addItem("Server", "CON9999", "con", 10));
+		System.out.println(conserver.addItem("Server", "CON1234", "java", 100));
+		Endpoint endpoint = Endpoint.publish("http://localhost:3000/comp", conserver);
 
 	}
-	
+
 	@Override
-	public synchronized String connect(String userID){
+	public synchronized String connect(String userID) {
 		System.out.println("server connect request received from : " + userID);
 		if (userID.startsWith("CON")) {
 			System.out.println(userID + " connected to the server");
@@ -141,8 +104,7 @@ public class CONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String addItem(String managerID, String itemID, String itemName, int quantity)
-			{
+	public synchronized String addItem(String managerID, String itemID, String itemName, int quantity) {
 		if (library.containsKey(itemID)) {
 			Book newBookDetails = library.get(itemID);
 			int newQuantity = newBookDetails.getQuantity() + quantity;
@@ -161,8 +123,7 @@ public class CONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String removeItem(String managerID, String itemID, int quantity)
-			{
+	public synchronized String removeItem(String managerID, String itemID, int quantity) {
 		if (library.containsKey(itemID)) {
 			if (quantity == -1) {
 				try {
@@ -213,7 +174,7 @@ public class CONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String listItemAvailability(String managerID){
+	public synchronized String listAvailableItems(String managerID) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n\n------LIST OF BOOKS IN LIBRARY------\n");
 		for (HashMap.Entry<String, Book> entry : library.entrySet()) {
@@ -226,8 +187,7 @@ public class CONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String borrowItem(String userID, String itemID)
-		{
+	public synchronized String borrowItem(String userID, String itemID) {
 		if (library.containsKey(itemID)) {
 			boolean borrowedFlag = false;
 
@@ -306,8 +266,7 @@ public class CONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String findItem(String userID, String itemName)
-			{
+	public synchronized String findItem(String userID, String itemName) {
 		StringBuilder sb = new StringBuilder();
 		fileContent = userID + " requested to find Book with title '" + itemName + "' from the library.";
 		writeLog(fileContent);
@@ -327,8 +286,7 @@ public class CONServer extends LibraryInterfacePOA{
 			return sb.toString();
 	}
 
-	public synchronized String serverRequestFind(String userID, String itemName)
-		{
+	public synchronized String serverRequestFind(String userID, String itemName) {
 		StringBuilder sb = new StringBuilder();
 		fileContent = userID + " requested to find Book with title '" + itemName + "' from the library.";
 		writeLog(fileContent);
@@ -342,8 +300,7 @@ public class CONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String returnItem(String userID, String itemID)
-			{
+	public synchronized String returnItem(String userID, String itemID) {
 		if (borrowers.containsKey(userID)) {
 			for (Book b : borrowers.get(userID)) {
 				if (b.getID().equals(itemID)) {
@@ -379,8 +336,7 @@ public class CONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public synchronized String addToWaitlist(String userID, String itemID)
-			{
+	public synchronized String addToWaitingList(String userID, String itemID) {
 		if (itemID.startsWith("MCG")) {
 			contactOtherServer("WAIT" + userID + itemID, 4444);
 
@@ -401,7 +357,7 @@ public class CONServer extends LibraryInterfacePOA{
 		return fileContent;
 	}
 
-	public synchronized void checkWaitlist(String itemID){
+	public synchronized void checkWaitlist(String itemID) {
 		int newQuantity = library.get(itemID).getQuantity();
 		ArrayList<String> queue = waitlist.get(itemID);
 
@@ -446,7 +402,7 @@ public class CONServer extends LibraryInterfacePOA{
 			return 0;
 	}
 
-	public synchronized void writeLog(String logData){
+	public synchronized void writeLog(String logData) {
 		logData = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()) + " : " + logData + "\n";
 		try {
 			Files.write(Paths.get("src/server/logs/" + serverNickName + "Log.txt"), logData.getBytes(),
@@ -499,12 +455,12 @@ public class CONServer extends LibraryInterfacePOA{
 				System.out.println("REQUEST MESSAGE" + requestMessage);
 				requestMessage = new String(request.getData(), 0, request.getLength(), "UTF-8");
 				if (requestMessage.startsWith("FIND")) {
-					
+
 					response = serverRequestFind(requestMessage.substring(4, 12), requestMessage.substring(12));
 				} else if (requestMessage.startsWith("BORR")) {
 					response = borrowItem(requestMessage.substring(4, 12), requestMessage.substring(12));
 				} else if (requestMessage.startsWith("WAIT")) {
-					response = addToWaitlist(requestMessage.substring(4, 12), requestMessage.substring(12));
+					response = addToWaitingList(requestMessage.substring(4, 12), requestMessage.substring(12));
 				} else if (requestMessage.startsWith("CHEC")) {
 					response = String.valueOf(checkBorrowedBooks(requestMessage.substring(4)));
 				} else if (requestMessage.startsWith("RETU")) {
@@ -538,67 +494,67 @@ public class CONServer extends LibraryInterfacePOA{
 	}
 
 	@Override
-	public String exchangeItem(String userID, String oldItemID, String newItemID)
-			{
+	public String exchangeItem(String userID, String oldItemID, String newItemID) {
 		boolean oldFlag = false, newFlag = false, validFlag = false;
-		
+
 		if (oldItemID.startsWith(serverNickName)) {
-			if(oldBookCheck(userID,oldItemID).equals("true"))
-				oldFlag=true;
-		}else if(oldItemID.startsWith("MCG")){
-			if(contactOtherServer("OLDB"+userID+oldItemID,4444).equals("true"))
-				oldFlag=true;
-		}else if(oldItemID.startsWith("MON")){
-			if(contactOtherServer("OLDB"+userID+oldItemID,5555).equals("true"))
-				oldFlag=true;
+			if (oldBookCheck(userID, oldItemID).equals("true"))
+				oldFlag = true;
+		} else if (oldItemID.startsWith("MCG")) {
+			if (contactOtherServer("OLDB" + userID + oldItemID, 4444).equals("true"))
+				oldFlag = true;
+		} else if (oldItemID.startsWith("MON")) {
+			if (contactOtherServer("OLDB" + userID + oldItemID, 5555).equals("true"))
+				oldFlag = true;
 		}
-		
+
 		if (newItemID.startsWith(serverNickName)) {
-			if(newBookCheck(userID,newItemID).equals("true"))
-				newFlag=true;
-		}else if(newItemID.startsWith("MCG")){
-			if(contactOtherServer("NEWB"+userID+newItemID,4444).equals("true"))
-				newFlag=true;
-		}else if(newItemID.startsWith("MON")){
-			if(contactOtherServer("NEWB"+userID+newItemID,5555).equals("true"))
-				newFlag=true;
+			if (newBookCheck(userID, newItemID).equals("true"))
+				newFlag = true;
+		} else if (newItemID.startsWith("MCG")) {
+			if (contactOtherServer("NEWB" + userID + newItemID, 4444).equals("true"))
+				newFlag = true;
+		} else if (newItemID.startsWith("MON")) {
+			if (contactOtherServer("NEWB" + userID + newItemID, 5555).equals("true"))
+				newFlag = true;
 		}
-		
-		if(newItemID.substring(0,3).equals(oldItemID.substring(0,3))){
-			validFlag=true;
-		}else{
-			if(!newItemID.startsWith(serverNickName)){
-				if(newItemID.startsWith("MCG")){
-					if(contactOtherServer("CHEC"+userID,4444).equals("0"))
-						validFlag=true;
+
+		if (newItemID.substring(0, 3).equals(oldItemID.substring(0, 3))) {
+			validFlag = true;
+		} else {
+			if (!newItemID.startsWith(serverNickName)) {
+				if (newItemID.startsWith("MCG")) {
+					if (contactOtherServer("CHEC" + userID, 4444).equals("0"))
+						validFlag = true;
 				}
-				if(newItemID.startsWith("MON")){
-						if(contactOtherServer("CHEC"+userID,5555).equals("0"))
-							validFlag=true;
+				if (newItemID.startsWith("MON")) {
+					if (contactOtherServer("CHEC" + userID, 5555).equals("0"))
+						validFlag = true;
 				}
-			}else{
-				validFlag=true;
+			} else {
+				validFlag = true;
 			}
 		}
-		
-		//MCGUser CON1234,MCG123 -> exchange MCG1234 CON0001 - fails already have 1 book.
-		//if same - no check | if different newOtherID check book borrowed already (if 0 - valid else invalid)		
-		
-		if(oldFlag&&newFlag&&validFlag){
-			fileContent="Initiating Exchange Sequence";
-			fileContent+=returnItem(userID, oldItemID)+"\n";
-			fileContent+=borrowItem(userID, newItemID)+"\n";
-			fileContent+="Exchange Sequence Successfull";
+
+		// MCGUser CON1234,MCG123 -> exchange MCG1234 CON0001 - fails already
+		// have 1 book.
+		// if same - no check | if different newOtherID check book borrowed
+		// already (if 0 - valid else invalid)
+
+		if (oldFlag && newFlag && validFlag) {
+			fileContent = "Initiating Exchange Sequence";
+			fileContent += returnItem(userID, oldItemID) + "\n";
+			fileContent += borrowItem(userID, newItemID) + "\n";
+			fileContent += "Exchange Sequence Successfull";
 			writeLog(fileContent);
 			return fileContent;
-		}else{
-			fileContent="Exchange Sequence Failed. One or more requirements dont match. Try Again";
+		} else {
+			fileContent = "Exchange Sequence Failed. One or more requirements dont match. Try Again";
 			writeLog(fileContent);
 			return fileContent;
 		}
 	}
 
-	@Override
 	public String oldBookCheck(String userID, String itemID) {
 		if (itemID.startsWith(serverNickName)) {
 			if (borrowers.containsKey(userID)) {
@@ -612,19 +568,18 @@ public class CONServer extends LibraryInterfacePOA{
 		return "false";
 	}
 
-	@Override
-	public String newBookCheck(String userID, String itemID){
-		
-		if(library.containsKey(itemID)){
-			if(library.get(itemID).getQuantity()>0){
-				if(borrowers.containsKey(userID)){
+	public String newBookCheck(String userID, String itemID) {
+
+		if (library.containsKey(itemID)) {
+			if (library.get(itemID).getQuantity() > 0) {
+				if (borrowers.containsKey(userID)) {
 					for (Book b : borrowers.get(userID)) {
 						if (b.getID().equals(itemID)) {
 							return "falsUser already has the new requested item";
 						}
 					}
 					return "true";
-				}else{
+				} else {
 					return "true";
 				}
 			}
