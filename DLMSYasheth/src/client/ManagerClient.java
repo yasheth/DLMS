@@ -13,7 +13,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import serverinterface.LibraryInterface;
+import org.omg.CORBA.ORB;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+
+import repository.LibraryInterface;
+import repository.LibraryInterfaceHelper;
+
 
 /**
  * @author Yash Sheth
@@ -39,13 +45,40 @@ public class ManagerClient {
 		userID = input.nextLine();
 		if (userID.toUpperCase().charAt(3) == 'M' && userID.length() == 8) {
 			if (userID.startsWith("CON")) {
-				obj = (LibraryInterface) Naming.lookup("rmi://localhost:3333/CON");
+				try {
+					ORB orb = ORB.init(args, null);
+					// -ORBInitialPort 1050 -ORBInitialHost localhost
+					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("CON"));	
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
 				valid = true;
 			} else if (userID.startsWith("MCG")) {
-				obj = (LibraryInterface) Naming.lookup("rmi://localhost:4444/MCG");
+				try {
+					ORB orb = ORB.init(args, null);
+					// -ORBInitialPort 1050 -ORBInitialHost localhost
+					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("MCG"));	
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
 				valid = true;
 			} else if (userID.startsWith("MON")) {
-				obj = (LibraryInterface) Naming.lookup("rmi://localhost:5555/MON");
+				try {
+					ORB orb = ORB.init(args, null);
+					// -ORBInitialPort 1050 -ORBInitialHost localhost
+					org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+					NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+					obj = (LibraryInterface) LibraryInterfaceHelper.narrow(ncRef.resolve_str("MON"));	
+				}
+				catch(Exception e) {
+					e.printStackTrace();
+				}
 				valid = true;
 			} else {
 				System.out.println("Incorrect ID.");

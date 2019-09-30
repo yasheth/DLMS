@@ -1,0 +1,44 @@
+CONM0001 LOG FILE
+Manager is Online
+2019.03.23.09.44.13 : Connected to Concordia Library Server.
+Welcome CONM0001
+2019.03.23.09.44.35 : CONM0001 added CON7979 :Ajay, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.44.38 : 
+
+------LIST OF BOOKS IN LIBRARY------
+CON0001 :init , Quantity:- 1
+CON7979 :Ajay , Quantity:- 1
+CON9999 :con , Quantity:- 10
+CON1234 :java , Quantity:- 100
+
+2019.03.23.09.45.00 : CONM0001 failed to remove Book. No Books matching the given ID init REMOVEITEM - FAILED
+2019.03.23.09.45.12 : CONM0001 Successfully Removed 1 Copies ofCON0001 from Library. REMOVEITEM - COMPLETED
+2019.03.23.09.45.19 : CONM0001 Failed to Remove 1 copies of CON0001 from Library. REMOVEITEM - FAILED
+2019.03.23.09.45.23 : 
+
+------LIST OF BOOKS IN LIBRARY------
+CON0001 :init , Quantity:- 0
+CON7979 :Ajay , Quantity:- 1
+CON9999 :con , Quantity:- 10
+CON1234 :java , Quantity:- 100
+
+2019.03.23.09.45.46 : CONM0001 added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.46.05 : CONM0001 added CON0001 :INIT, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.46.08 : 
+
+------LIST OF BOOKS IN LIBRARY------
+CON0001 :init , Quantity:- 2
+CON7979 :Ajay , Quantity:- 1
+CON9999 :con , Quantity:- 10
+CON1234 :java , Quantity:- 100
+
+2019.03.23.09.46.20 : CONM0001 added CON0001 :INITS, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.46.23 : 
+
+------LIST OF BOOKS IN LIBRARY------
+CON0001 :init , Quantity:- 3
+CON7979 :Ajay , Quantity:- 1
+CON9999 :con , Quantity:- 10
+CON1234 :java , Quantity:- 100
+
+2019.03.23.09.47.05 : Disconnected!

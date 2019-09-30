@@ -1,0 +1,27 @@
+CONU1234 LOG FILE
+User is Online
+2019.03.05.21.57.40 : User is Back Online!
+
+2019.03.05.22.00.27 : User is Back Online!
+
+2019.03.05.22.00.27 : Connected to Concordia Library Server.
+Welcome CONU1234
+2019.03.05.22.00.33 : Disconnected!
+2019.03.05.22.01.53 : User is Back Online!
+
+2019.03.05.22.01.53 : Connected to Concordia Library Server.
+Welcome CONU1234
+2019.03.05.22.01.59 : CON1234 : java, Quantity:- 100
+MCG1234 : java, Quantity:- 100
+MON1234 : java, Quantity:- 100
+2019.03.05.23.43.09 : Disconnected!
+2019.03.06.19.49.27 : User is Back Online!
+
+2019.03.06.19.49.27 : Connected to Concordia Library Server.
+Welcome CONU1234
+2019.03.06.19.50.00 : CONU1234 borrowed MCG0001 from the library. Happy Reading!
+2019.03.06.19.50.09 : CONU1234 borrowed CON1234 from the library. Happy Reading!
+2019.03.06.19.50.23 : Initiating Exchange SequenceBook returned Successfully.
+You already have borrowed 1 book from McGill Library.
+Exchange Sequence Successfull
+2019.03.06.19.51.03 : You havent borrowed any book with MCG1234 ID.

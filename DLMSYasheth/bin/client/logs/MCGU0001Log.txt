@@ -1,0 +1,26 @@
+MCGU0001 LOG FILE
+User is Online
+2019.03.06.21.12.33 : User is Back Online!
+
+2019.03.06.21.25.52 : User is Back Online!
+
+2019.03.06.21.26.33 : User is Back Online!
+
+2019.03.06.21.57.41 : User is Back Online!
+
+2019.03.06.21.57.58 : User is Back Online!
+
+2019.03.06.21.58.18 : User is Back Online!
+
+2019.03.06.22.00.14 : User is Back Online!
+
+2019.03.06.22.00.56 : User is Back Online!
+
+2019.03.06.22.10.29 : User is Back Online!
+
+2019.03.06.22.37.56 : User is Back Online!
+
+2019.03.06.22.37.56 : Connected to McGill Library Server.
+Welcome MCGU0001
+2019.03.06.22.38.03 : MCGU0001 already has MCG1234 borrowed from the library. Check your Reading List. Happy Reading!
+2019.03.06.22.38.12 : Exchange Sequence Successfull

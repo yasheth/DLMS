@@ -1,0 +1,21 @@
+CONU0001 LOG FILE
+User is Online
+2019.03.02.17.45.51 : Connected to Concordia Library Server.
+Welcome CONU0001
+2019.03.02.17.45.57 : CONU0001 borrowed CON1234 from the library. Happy Reading!
+2019.03.02.17.46.00 : CON1234 : java, Quantity:- 99
+MCG1234 : java, Quantity:- 100
+MON1234 : java, Quantity:- 100
+2019.03.02.17.46.06 : CONU0001 already has CON1234 borrowed from the library. Check your Reading List. Happy Reading!
+2019.03.02.17.46.11 : Book returned Successfully.
+2019.03.02.17.46.14 : CON1234 : java, Quantity:- 100
+MCG1234 : java, Quantity:- 100
+MON1234 : java, Quantity:- 100
+2019.03.05.19.24.36 : User is Back Online!
+
+2019.03.05.21.53.32 : User is Back Online!
+
+2019.03.05.21.53.32 : Connected to Concordia Library Server.
+Welcome CONU0001
+2019.03.05.21.53.53 : CONU0001 borrowed CON1234 from the library. Happy Reading!
+2019.03.05.21.57.25 : Disconnected!

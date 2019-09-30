@@ -94,3 +94,203 @@ Borrow Request forwarded to McGill Server
 2019.03.03.14.12.29 : 
 Borrow Request forwarded to McGill Server
 2019.03.03.14.12.29 : Exchange Sequence Successfull
+2019.03.05.19.15.21 : Concordia Server is Back Online!
+
+2019.03.05.19.15.21 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.05.19.15.21 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.05.19.15.21 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.05.21.25.07 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.05.21.25.07 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.05.21.25.07 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.05.21.51.50 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.05.21.51.50 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.05.21.51.50 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.05.21.53.32 : CONU0001 connected to the server
+2019.03.05.21.53.53 : CONU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.05.22.00.06 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.05.22.00.06 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.05.22.00.06 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.05.22.00.27 : CONU1234 connected to the server
+2019.03.05.22.01.53 : CONU1234 connected to the server
+2019.03.05.22.01.59 : CONU1234 requested to find Book with title 'java' from the library.
+2019.03.06.19.47.39 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.06.19.47.39 : Server added CON3333 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.19.47.39 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.06.19.49.27 : CONU1234 connected to the server
+2019.03.06.19.50.00 : 
+Borrow Request forwarded to McGill Server
+2019.03.06.19.50.09 : CONU1234 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.06.19.50.23 : CONU1234 returned CON1234 to the library. RETURN - COMPLETED
+2019.03.06.19.50.23 : Initiating Exchange SequenceBook returned Successfully.
+You already have borrowed 1 book from McGill Library.
+Exchange Sequence Successfull
+2019.03.06.21.11.18 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.06.21.11.18 : Server added CON9999 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.21.11.18 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.06.21.12.34 : CONU1001 connected to the server
+2019.03.06.21.12.34 : MCGU0001 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.06.21.12.34 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.06.21.12.34 : CONU1001 requested CON0001 from the library. No copies available.  BORROW - FAILED
+2019.03.06.21.12.34 : CONU1001 added to waitlist of CON0001 in the library.
+2019.03.06.21.12.34 : MCGU0001 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.06.21.12.34 : CONU1001in the waitlist gets CON0001
+2019.03.06.21.12.34 : CONU1001 already has CON0001 borrowed from the library. BORROW - FAILED
+2019.03.06.21.25.52 : MCGU0001 requested CON0001 from the library. No copies available.  BORROW - FAILED
+2019.03.06.21.25.52 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.06.21.25.52 : CONU1001 already has CON0001 borrowed from the library. BORROW - FAILED
+2019.03.06.21.25.52 : CONU1001 added to waitlist of CON0001 in the library.
+2019.03.06.21.25.52 : MCGU0001 tried to return CON0001 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.06.21.25.52 : CONU1001 already has CON0001 borrowed from the library. BORROW - FAILED
+2019.03.06.21.26.33 : MCGU0001 requested CON0001 from the library. No copies available.  BORROW - FAILED
+2019.03.06.21.26.33 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.06.21.26.33 : CONU1001 already has CON0001 borrowed from the library. BORROW - FAILED
+2019.03.06.21.26.33 : CONU1001 added to waitlist of CON0001 in the library.
+2019.03.06.21.26.33 : MCGU0001 tried to return CON0001 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.06.21.26.33 : CONU1001 already has CON0001 borrowed from the library. BORROW - FAILED
+2019.03.06.21.57.41 : MCGU0001 requested CON0001 from the library. No copies available.  BORROW - FAILED
+2019.03.06.21.57.41 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.06.21.57.41 : CONU1001 already has CON0001 borrowed from the library. BORROW - FAILED
+2019.03.06.21.57.41 : CONU1001 added to waitlist of CON0001 in the library.
+2019.03.06.21.57.41 : MCGU0001 tried to return CON0001 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.06.21.57.41 : CONU1001 already has CON0001 borrowed from the library. BORROW - FAILED
+2019.03.06.21.57.41 : CONU1001 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.06.21.57.41 : CONU1001in the waitlist gets CON0001
+2019.03.06.21.58.19 : 
+Borrow Request forwarded to Montreal Server
+2019.03.06.22.00.15 : 
+Borrow Request forwarded to Montreal Server
+2019.03.06.22.00.57 : 
+Borrow Request forwarded to Montreal Server
+2019.03.06.22.10.30 : 
+Borrow Request forwarded to Montreal Server
+2019.03.06.22.31.28 : 
+Borrow Request forwarded to McGill Server
+2019.03.06.22.31.28 : CONU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.06.22.31.28 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.06.22.31.28 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.06.22.32.17 : CONU0001 already has CON1234 borrowed from the library. BORROW - FAILED
+2019.03.06.22.32.17 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.06.22.32.17 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.06.22.34.20 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.06.22.34.20 : Server added CON9999 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.22.34.20 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.06.22.34.44 : 
+Borrow Request forwarded to McGill Server
+2019.03.06.22.34.44 : CONU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.06.22.34.44 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.06.22.34.45 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.06.22.38.12 : MCGU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.06.22.41.01 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.06.22.41.01 : Server added CON9999 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.22.41.01 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.06.22.41.19 : MCGU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.06.22.41.19 : 
+Borrow Request forwarded to McGill Server
+2019.03.06.22.41.19 : CONU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.06.22.41.19 : CONU0001 tried to return MCG1234 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.06.22.41.19 : 
+Borrow Request forwarded to Montreal Server
+2019.03.06.22.41.19 : Initiating Exchange SequenceYou havent borrowed any book with MCG1234 ID.
+CONU0001 borrowed MON0001 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.06.22.41.19 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.22.23.30.30 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.22.23.30.30 : Server added CON9999 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.22.23.30.30 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.22.23.32.20 : MCGU0001 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.22.23.32.20 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.22.23.32.20 : CONU1001 requested CON0001 from the library. No copies available.  BORROW - FAILED
+2019.03.22.23.32.20 : CONU1001 added to waitlist of CON0001 in the library.
+2019.03.22.23.32.20 : MCGU0001 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.22.23.32.20 : CONU1001in the waitlist gets CON0001
+2019.03.22.23.32.20 : CONU1001 already has CON0001 borrowed from the library. BORROW - FAILED
+2019.03.22.23.32.21 : CONU1001 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.22.23.32.38 : MCGU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.22.23.32.38 : 
+Borrow Request forwarded to McGill Server
+2019.03.22.23.32.38 : CONU0001 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.22.23.32.38 : CONU0001 tried to return MCG1234 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.22.23.32.38 : 
+Borrow Request forwarded to Montreal Server
+2019.03.22.23.32.38 : Initiating Exchange SequenceYou havent borrowed any book with MCG1234 ID.
+CONU0001 borrowed MON0001 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.22.23.32.38 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.22.23.33.06 : CONU0001 tried to return MON0001 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.23.09.43.22 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.43.22 : Server added CON9999 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.23.09.43.22 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.23.09.44.13 : CONM0001 connected to the server
+2019.03.23.09.44.35 : CONM0001 added CON7979 :Ajay, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.44.38 : CONM0001 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.23.09.45.00 : CONM0001 failed to remove Book. No Books matching the given ID init REMOVEITEM - FAILED
+2019.03.23.09.45.12 : CONM0001 Successfully Removed 1 Copies ofCON0001 from Library. REMOVEITEM - COMPLETED
+2019.03.23.09.45.19 : CONM0001 Failed to Remove 1 copies of CON0001 from Library. REMOVEITEM - FAILED
+2019.03.23.09.45.23 : CONM0001 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.23.09.45.46 : CONM0001 added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.46.05 : CONM0001 added CON0001 :INIT, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.46.08 : CONM0001 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.23.09.46.20 : CONM0001 added CON0001 :INITS, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.46.23 : CONM0001 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.23.09.47.18 : CONU0001 connected to the server
+2019.03.23.09.47.38 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.09.47.43 : CONU0001 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.23.09.47.51 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.09.48.41 : CONU7979 connected to the server
+2019.03.23.09.48.46 : CONU7979 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.23.09.48.50 : CONU7979 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.23.09.48.55 : CONU7979 requested to find Book with title 'init' from the library.
+2019.03.23.09.49.01 : CONU7979 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.23.09.49.12 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.09.49.22 : CONU7979 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.23.09.49.22 : CONU7979 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.23.09.49.22 : Initiating Exchange SequenceBook returned Successfully.
+CONU7979 borrowed CON1234 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.09.51.11 : CONU4545 connected to the server
+2019.03.23.09.51.14 : CONU4545 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.23.09.51.20 : CONU4545 returned CON0001 to the library. RETURN - COMPLETED
+2019.03.23.09.51.20 : CONU4545 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.23.09.51.20 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed CON1234 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.09.51.28 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.09.51.41 : CONU4545 returned CON1234 to the library. RETURN - COMPLETED
+2019.03.23.09.51.41 : 
+Borrow Request forwarded to McGill Server
+2019.03.23.09.51.41 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed MCG0001 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.09.51.56 : 
+Borrow Request forwarded to McGill Server
+2019.03.23.09.51.56 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed MCG1234 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.10.25.06 : CONU4545 borrowed CON1234 from the library.  BORROW - COMPLETED
+2019.03.23.10.25.16 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.10.25.25 : CONU4545 requested to find Book with title 'java' from the library.
+2019.03.23.10.25.40 : CONU4545 returned CON1234 to the library. RETURN - COMPLETED
+2019.03.23.10.25.40 : 
+Borrow Request forwarded to Montreal Server
+2019.03.23.10.25.40 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed MON0001 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.10.26.23 : CONU4545 requested to find Book with title 'mcg' from the library.
+2019.03.23.10.26.42 : 
+Borrow Request forwarded to McGill Server
+2019.03.23.10.26.42 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed MCG9999 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.10.26.55 : CONU4545 requested to find Book with title 'init' from the library.
+2019.03.23.10.27.00 : CONU4545 borrowed CON0001 from the library.  BORROW - COMPLETED
+2019.03.23.10.27.08 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.12.09.22 : Server added CON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.12.09.22 : Server added CON9999 :con, Quantity: 10 ADDITEM - COMPLETED
+2019.03.23.12.09.22 : Server added CON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.23.12.11.20 : CONM3333 connected to the server
+2019.03.23.12.11.32 : CONM3333 added CON6231 :Distributed, Quantity: 2 ADDITEM - COMPLETED
+2019.03.23.12.11.48 : CONM3333 added CON6651 :ADT, Quantity: 2 ADDITEM - COMPLETED
+2019.03.23.12.11.52 : CONM3333 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.23.12.12.34 : MONU1122 borrowed CON6231 from the library.  BORROW - COMPLETED
+2019.03.23.12.13.19 : MONU1122 requested to find Book with title 'Distributed' from the library.
+2019.03.23.12.14.06 : MCGU5555 borrowed CON6651 from the library.  BORROW - COMPLETED

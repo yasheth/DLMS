@@ -49,3 +49,102 @@ Borrow Request forwarded to McGill Server
 2019.03.03.14.10.23 : CONU7878 requested to find Book with title 'init' from the library.
 2019.03.03.14.10.58 : CONU7878 requested to find Book with title 'init' from the library.
 2019.03.03.14.11.02 : CONU7878 requested to find Book with title 'java' from the library.
+2019.03.05.19.16.04 : Montreal Server is Back Online!
+
+2019.03.05.19.16.04 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.05.19.16.04 : Server added MON5555 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.05.19.16.04 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.05.21.27.27 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.05.21.27.27 : Server added MON3333 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.05.21.27.27 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.05.21.54.13 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.05.21.54.13 : Server added MON3333 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.05.21.54.13 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.05.22.00.16 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.05.22.00.16 : Server added MON3333 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.05.22.00.16 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.05.22.00.42 : MONU1234 connected to the server
+2019.03.05.22.01.59 : CONU1234 requested to find Book with title 'java' from the library.
+2019.03.06.19.47.56 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.06.19.47.56 : Server added MON3333 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.19.47.56 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.06.21.11.40 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.06.21.11.40 : Server added MON9999 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.21.11.40 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.06.21.12.34 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.06.21.25.52 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.06.21.25.53 : MONM7777 added MON2020 :Montreal T20, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.21.25.53 : MONM7777 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.06.21.25.53 : MONM7777 Successfully Removed MON2020 from Library. REMOVEITEM - COMPLETED
+2019.03.06.21.25.53 : MONM7777 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.06.21.26.33 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.06.21.26.33 : MONM7777 added MON2020 :Montreal T20, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.21.26.34 : MONM7777 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.06.21.26.34 : MONM7777 Successfully Removed MON2020 from Library. REMOVEITEM - COMPLETED
+2019.03.06.21.26.34 : MONM7777 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.06.21.57.41 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.06.21.57.41 : MONM7777 added MON2020 :Montreal T20, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.21.57.41 : MONM7777 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.06.21.57.42 : MONM7777 Successfully Removed MON2020 from Library. REMOVEITEM - COMPLETED
+2019.03.06.21.57.42 : MONM7777 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.06.21.58.19 : MONU0001 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.06.21.58.19 : MONU0001 returned MON0001 to the library. RETURN - COMPLETED
+2019.03.06.21.58.19 : CONU0001 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.06.21.58.19 : CONU0001 returned MON0001 to the library. RETURN - COMPLETED
+2019.03.06.22.00.15 : MONU0001 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.06.22.00.15 : MONU0001 returned MON0001 to the library. RETURN - COMPLETED
+2019.03.06.22.00.15 : CONU0001 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.06.22.00.15 : CONU0001 returned MON0001 to the library. RETURN - COMPLETED
+2019.03.06.22.00.57 : MONU0001 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.06.22.00.57 : CONU0001 requested MON0001 from the library. No copies available.  BORROW - FAILED
+2019.03.06.22.00.57 : CONU0001 tried to return MON0001 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.06.22.00.58 : MONU0001 returned MON0001 to the library. RETURN - COMPLETED
+2019.03.06.22.10.30 : MONU0001 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.06.22.10.30 : CONU0001 requested MON0001 from the library. No copies available.  BORROW - FAILED
+2019.03.06.22.10.30 : CONU0001 tried to return MON0001 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.06.22.10.31 : MONU0001 returned MON0001 to the library. RETURN - COMPLETED
+2019.03.06.22.34.38 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.06.22.34.38 : Server added MON9999 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.22.34.38 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.06.22.41.13 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.06.22.41.13 : Server added MON9999 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.06.22.41.13 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.06.22.41.19 : CONU0001 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.22.23.30.43 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.22.23.30.43 : Server added MON9999 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.22.23.30.43 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.22.23.32.20 : MCGU0001 requested to find Book with title 'java' from the library.
+2019.03.22.23.32.21 : MONM7777 added MON2020 :Montreal T20, Quantity: 10 ADDITEM - COMPLETED
+2019.03.22.23.32.21 : MONM7777 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.22.23.32.21 : MONM7777 Successfully Removed MON2020 from Library. REMOVEITEM - COMPLETED
+2019.03.22.23.32.21 : MONM7777 requested to view library inventory. LISTITEMS - COMPLETED
+2019.03.22.23.32.38 : CONU0001 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.22.23.33.06 : MONU0001 requested MON0001 from the library. No copies available.  BORROW - FAILED
+2019.03.22.23.33.07 : MONU0001 tried to return MON0001 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.23.09.43.43 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.09.43.43 : Server added MON9999 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.23.09.43.43 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.23.09.48.55 : CONU7979 requested to find Book with title 'init' from the library.
+2019.03.23.10.25.25 : CONU4545 requested to find Book with title 'java' from the library.
+2019.03.23.10.25.40 : CONU4545 borrowed MON0001 from the library.  BORROW - COMPLETED
+2019.03.23.10.25.47 : CONU4545 returned MON0001 to the library. RETURN - COMPLETED
+2019.03.23.10.26.23 : CONU4545 requested to find Book with title 'mcg' from the library.
+2019.03.23.10.26.55 : CONU4545 requested to find Book with title 'init' from the library.
+2019.03.23.12.09.33 : Server added MON0001 :init, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.12.09.33 : Server added MON9999 :mon, Quantity: 10 ADDITEM - COMPLETED
+2019.03.23.12.09.33 : Server added MON1234 :java, Quantity: 100 ADDITEM - COMPLETED
+2019.03.23.12.09.59 : MONM5555 connected to the server
+2019.03.23.12.10.17 : MONM5555 added MON6231 :Distributed, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.12.12.22 : MONU1122 connected to the server
+2019.03.23.12.12.34 : 
+Borrow Request forwarded to Concordia Server
+2019.03.23.12.12.44 : MONU1122 borrowed MON6231 from the library.  BORROW - COMPLETED
+2019.03.23.12.13.07 : MONU1122 tried to return CON6231 to the library but hasnt borrowed any book with matching ID. RETURN - FAILED
+2019.03.23.12.13.07 : Exchange Sequence Successfull
+2019.03.23.12.13.19 : MONU1122 requested to find Book with title 'Distributed' from the library.
+2019.03.23.12.13.51 : MCGU5555 requested MON6231 from the library. No copies available.  BORROW - FAILED
+2019.03.23.12.13.58 : MCGU5555 added to waitlist of MON6231 in the library.
+2019.03.23.12.14.52 : MONU1122 connected to the server
+2019.03.23.12.15.01 : MONU1122 returned MON6231 to the library. RETURN - COMPLETED
+2019.03.23.12.15.01 : MCGU5555in the waitlist gets MON6231
+2019.03.23.12.15.55 : MONM5555 requested to view library inventory. LISTITEMS - COMPLETED

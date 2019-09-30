@@ -1,0 +1,36 @@
+CONU4545 LOG FILE
+User is Online
+2019.03.23.09.51.11 : Connected to Concordia Library Server.
+Welcome CONU4545
+2019.03.23.09.51.14 : CONU4545 borrowed CON0001 from the library. Happy Reading!
+2019.03.23.09.51.20 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed CON1234 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.09.51.28 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.09.51.41 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed MCG0001 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.09.51.46 : You already have borrowed 1 book from McGill Library.
+2019.03.23.09.51.56 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed MCG1234 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.10.25.06 : CONU4545 borrowed CON1234 from the library. Happy Reading!
+2019.03.23.10.25.16 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.10.25.25 : CON1234 : java, Quantity:- 98
+MCG1234 : java, Quantity:- 99
+MON1234 : java, Quantity:- 100
+2019.03.23.10.25.40 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed MON0001 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.10.25.47 : Book returned Successfully.
+2019.03.23.10.26.23 : MCG9999 : mcg, Quantity:- 10
+
+2019.03.23.10.26.42 : Initiating Exchange SequenceBook returned Successfully.
+CONU4545 borrowed MCG9999 from the library. Happy Reading!
+Exchange Sequence Successfull
+2019.03.23.10.26.55 : CON0001 : init, Quantity:- 2
+MCG0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.23.10.27.00 : CONU4545 borrowed CON0001 from the library. Happy Reading!
+2019.03.23.10.27.08 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.10.27.19 : Disconnected!

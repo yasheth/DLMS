@@ -1,0 +1,13 @@
+MONM5555 LOG FILE
+Manager is Online
+2019.03.23.12.09.59 : Connected to Montreal Library Server.
+Welcome MONM5555
+2019.03.23.12.10.17 : MONM5555 added MON6231 :Distributed, Quantity: 1 ADDITEM - COMPLETED
+2019.03.23.12.15.55 : 
+
+------LIST OF BOOKS IN LIBRARY------
+MON6231 :Distributed , Quantity:- 0
+MON9999 :mon , Quantity:- 10
+MON0001 :init , Quantity:- 1
+MON1234 :java , Quantity:- 100
+

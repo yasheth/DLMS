@@ -1,0 +1,4 @@
+MCGM1123 LOG FILE
+Manager is Online
+2019.03.22.23.31.07 : Connected to McGill Library Server.
+Welcome MCGM1123

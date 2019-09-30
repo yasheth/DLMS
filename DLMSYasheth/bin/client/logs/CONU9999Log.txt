@@ -1,0 +1,36 @@
+CONU9999 LOG FILE
+User is Online
+2019.03.02.17.50.03 : Connected to Concordia Library Server.
+Welcome CONU9999
+2019.03.02.17.50.06 : CON1234 : java, Quantity:- 100
+MCG1234 : java, Quantity:- 100
+MON1234 : java, Quantity:- 100
+2019.03.02.17.50.11 : CONU9999 borrowed MCG1234 from the library. Happy Reading!
+2019.03.02.17.50.16 : You already have borrowed 1 book from McGill Library.
+2019.03.02.17.50.26 : Book returned Successfully.
+2019.03.02.17.54.03 : User is Back Online!
+
+2019.03.02.17.54.03 : Connected to Concordia Library Server.
+Welcome CONU9999
+2019.03.02.17.54.06 : CON0001 : init, Quantity:- 1
+MCG0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.02.17.55.00 : CON0001 : init, Quantity:- 1
+MCG0001 : init, Quantity:- 0
+MON0001 : init, Quantity:- 1
+2019.03.02.17.55.05 : Book returned Successfully.
+2019.03.02.17.55.46 : CONU9999 borrowed MCG1234 from the library. Happy Reading!
+2019.03.02.17.56.17 : Book returned Successfully.
+2019.03.02.17.56.23 : Book returned Successfully.
+2019.03.02.18.21.38 : User is Back Online!
+
+2019.03.02.18.21.38 : Connected to Concordia Library Server.
+Welcome CONU9999
+2019.03.02.18.21.50 : CONU9999 borrowed MCG1234 from the library. Happy Reading!
+2019.03.02.18.22.17 : You already have borrowed 1 book from McGill Library.
+2019.03.02.18.22.24 : Book returned Successfully.
+2019.03.02.18.22.31 : CONU9999 borrowed MCG0001 from the library. Happy Reading!
+2019.03.02.18.23.11 : Book returned Successfully.
+2019.03.02.18.23.14 : CON0001 : init, Quantity:- 1
+MCG0001 : init, Quantity:- 0
+MON0001 : init, Quantity:- 1

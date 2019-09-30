@@ -15,7 +15,6 @@ import java.nio.file.StandardOpenOption;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -25,14 +24,23 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import org.omg.CORBA.ORB;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAHelper;
+
 import elements.Book;
-import serverinterface.LibraryInterface;
+import repository.LibraryInterface;
+import repository.LibraryInterfaceHelper;
+import repository.LibraryInterfacePOA;
 
 /**
  * @author Yash Sheth
  *
  */
-public class CONServer implements LibraryInterface {
+public class CONServer extends LibraryInterfacePOA{
 
 	static HashMap<String, Book> library = new HashMap<>();
 	static HashMap<String, ArrayList<String>> waitlist = new HashMap<>();
@@ -44,7 +52,7 @@ public class CONServer implements LibraryInterface {
 	public static void main(String args[]) throws Exception {
 		Runnable task = () -> {
 			try {
-				conserver.activateServer();
+				conserver.activateServer(args);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -64,32 +72,60 @@ public class CONServer implements LibraryInterface {
 		thread.start();
 		thread2.start();
 	}
+	private ORB orb;
 
+	public void setORB(ORB orb_val) {
+		orb = orb_val;
+	}
 	/**
 	 * @throws AlreadyBoundException
 	 * @throws IOException
 	 * 
 	 */
-	private static void activateServer() throws AlreadyBoundException, IOException {
+	private static void activateServer(String args[]) throws AlreadyBoundException, IOException {
 
-		Registry registry = LocateRegistry.createRegistry(3333);
-		Remote obj = UnicastRemoteObject.exportObject(conserver, 3333);
-		registry.bind(serverNickName, obj);
-		if (Files.exists(Paths.get("src/server/logs/" + serverNickName + "Log.txt"))) {
-			conserver.writeLog("Concordia Server is Back Online!\n");
-		} else {
-			PrintWriter writer = new PrintWriter("src/server/logs/" + serverNickName + "Log.txt", "UTF-8");
-			conserver.writeLog("Concordia Server is Online");
-			writer.close();
+		try {
+			// create and initialize the ORB //// get reference to rootpoa &amp; activate
+			// the POAManager
+			ORB orb = ORB.init(args,null);
+			// -ORBInitialPort 1050 -ORBInitialHost localhost
+			POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
+			rootpoa.the_POAManager().activate();
+
+			// create servant and register it with the ORB
+			conserver.setORB(orb);
+
+			// get object reference from the servant
+			org.omg.CORBA.Object ref = rootpoa.servant_to_reference(conserver);
+			LibraryInterface href = LibraryInterfaceHelper.narrow(ref);
+
+			org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+			NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+
+			NameComponent path[] = ncRef.to_name("CON");
+			ncRef.rebind(path, href);
+
+			System.out.println("Concordia Server is Online!");
+			System.out.println(conserver.addItem("Server", "CON0001", "init", 1));
+			System.out.println(conserver.addItem("Server", "CON9999", "con", 10));
+			System.out.println(conserver.addItem("Server", "CON1234", "java", 100));
+
+			for (;;) {
+				orb.run();
+			}
 		}
-		System.out.println("Concordia Server is Online!");
-		System.out.println(conserver.addItem("Server", "CON0001", "init", 1));
-		System.out.println(conserver.addItem("Server", "CON3333", "con", 10));
-		System.out.println(conserver.addItem("Server", "CON1234", "java", 100));
-	}
 
+		catch (Exception e) {
+			System.err.println("ERROR: " + e);
+			e.printStackTrace(System.out);
+		}
+
+		System.out.println("CONServer Exiting ...");
+
+	}
+	
 	@Override
-	public synchronized String connect(String userID) throws RemoteException, IOException {
+	public synchronized String connect(String userID){
 		System.out.println("server connect request received from : " + userID);
 		if (userID.startsWith("CON")) {
 			System.out.println(userID + " connected to the server");
@@ -106,7 +142,7 @@ public class CONServer implements LibraryInterface {
 
 	@Override
 	public synchronized String addItem(String managerID, String itemID, String itemName, int quantity)
-			throws RemoteException, IOException {
+			{
 		if (library.containsKey(itemID)) {
 			Book newBookDetails = library.get(itemID);
 			int newQuantity = newBookDetails.getQuantity() + quantity;
@@ -126,7 +162,7 @@ public class CONServer implements LibraryInterface {
 
 	@Override
 	public synchronized String removeItem(String managerID, String itemID, int quantity)
-			throws RemoteException, IOException {
+			{
 		if (library.containsKey(itemID)) {
 			if (quantity == -1) {
 				try {
@@ -177,7 +213,7 @@ public class CONServer implements LibraryInterface {
 	}
 
 	@Override
-	public synchronized String listItemAvailability(String managerID) throws RemoteException, IOException {
+	public synchronized String listItemAvailability(String managerID){
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n\n------LIST OF BOOKS IN LIBRARY------\n");
 		for (HashMap.Entry<String, Book> entry : library.entrySet()) {
@@ -191,7 +227,7 @@ public class CONServer implements LibraryInterface {
 
 	@Override
 	public synchronized String borrowItem(String userID, String itemID)
-			throws RemoteException, IOException, NotBoundException {
+		{
 		if (library.containsKey(itemID)) {
 			boolean borrowedFlag = false;
 
@@ -271,7 +307,7 @@ public class CONServer implements LibraryInterface {
 
 	@Override
 	public synchronized String findItem(String userID, String itemName)
-			throws RemoteException, IOException, NotBoundException {
+			{
 		StringBuilder sb = new StringBuilder();
 		fileContent = userID + " requested to find Book with title '" + itemName + "' from the library.";
 		writeLog(fileContent);
@@ -292,7 +328,7 @@ public class CONServer implements LibraryInterface {
 	}
 
 	public synchronized String serverRequestFind(String userID, String itemName)
-			throws RemoteException, IOException, NotBoundException {
+		{
 		StringBuilder sb = new StringBuilder();
 		fileContent = userID + " requested to find Book with title '" + itemName + "' from the library.";
 		writeLog(fileContent);
@@ -307,7 +343,7 @@ public class CONServer implements LibraryInterface {
 
 	@Override
 	public synchronized String returnItem(String userID, String itemID)
-			throws RemoteException, IOException, NotBoundException {
+			{
 		if (borrowers.containsKey(userID)) {
 			for (Book b : borrowers.get(userID)) {
 				if (b.getID().equals(itemID)) {
@@ -344,7 +380,7 @@ public class CONServer implements LibraryInterface {
 
 	@Override
 	public synchronized String addToWaitlist(String userID, String itemID)
-			throws RemoteException, IOException, NotBoundException {
+			{
 		if (itemID.startsWith("MCG")) {
 			contactOtherServer("WAIT" + userID + itemID, 4444);
 
@@ -365,7 +401,7 @@ public class CONServer implements LibraryInterface {
 		return fileContent;
 	}
 
-	public synchronized void checkWaitlist(String itemID) throws RemoteException, IOException {
+	public synchronized void checkWaitlist(String itemID){
 		int newQuantity = library.get(itemID).getQuantity();
 		ArrayList<String> queue = waitlist.get(itemID);
 
@@ -410,10 +446,15 @@ public class CONServer implements LibraryInterface {
 			return 0;
 	}
 
-	public synchronized void writeLog(String logData) throws IOException {
+	public synchronized void writeLog(String logData){
 		logData = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()) + " : " + logData + "\n";
-		Files.write(Paths.get("src/server/logs/" + serverNickName + "Log.txt"), logData.getBytes(),
-				StandardOpenOption.APPEND);
+		try {
+			Files.write(Paths.get("src/server/logs/" + serverNickName + "Log.txt"), logData.getBytes(),
+					StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public String contactOtherServer(String message, int serverPort) {
@@ -497,9 +538,9 @@ public class CONServer implements LibraryInterface {
 	}
 
 	@Override
-	public String exchangeItem(String userID, String newItemID, String oldItemID)
-			throws RemoteException, IOException, NotBoundException {
-		boolean oldFlag = false, newFlag = false, validFlag = true;
+	public String exchangeItem(String userID, String oldItemID, String newItemID)
+			{
+		boolean oldFlag = false, newFlag = false, validFlag = false;
 		
 		if (oldItemID.startsWith(serverNickName)) {
 			if(oldBookCheck(userID,oldItemID).equals("true"))
@@ -523,16 +564,25 @@ public class CONServer implements LibraryInterface {
 				newFlag=true;
 		}
 		
-//		if (userID.startsWith(serverNickName)) {
-//				validFlag=true;
-//		}else if(newItemID.startsWith("MCG")){
-//			if(contactOtherServer("CHEC"+userID,4444).equals("1"))
-//				newFlag=true;
-//		}else if(newItemID.startsWith("MON")){
-//			if(contactOtherServer("CHEC"+userID,5555).equals("1"))
-//				newFlag=true;
-//		}
+		if(newItemID.substring(0,3).equals(oldItemID.substring(0,3))){
+			validFlag=true;
+		}else{
+			if(!newItemID.startsWith(serverNickName)){
+				if(newItemID.startsWith("MCG")){
+					if(contactOtherServer("CHEC"+userID,4444).equals("0"))
+						validFlag=true;
+				}
+				if(newItemID.startsWith("MON")){
+						if(contactOtherServer("CHEC"+userID,5555).equals("0"))
+							validFlag=true;
+				}
+			}else{
+				validFlag=true;
+			}
+		}
 		
+		//MCGUser CON1234,MCG123 -> exchange MCG1234 CON0001 - fails already have 1 book.
+		//if same - no check | if different newOtherID check book borrowed already (if 0 - valid else invalid)		
 		
 		if(oldFlag&&newFlag&&validFlag){
 			fileContent="Initiating Exchange Sequence";
@@ -549,7 +599,7 @@ public class CONServer implements LibraryInterface {
 	}
 
 	@Override
-	public String oldBookCheck(String userID, String itemID) throws RemoteException, IOException, NotBoundException {
+	public String oldBookCheck(String userID, String itemID) {
 		if (itemID.startsWith(serverNickName)) {
 			if (borrowers.containsKey(userID)) {
 				for (Book b : borrowers.get(userID)) {
@@ -563,7 +613,8 @@ public class CONServer implements LibraryInterface {
 	}
 
 	@Override
-	public String newBookCheck(String userID, String itemID) throws RemoteException, IOException, NotBoundException {
+	public String newBookCheck(String userID, String itemID){
+		
 		if(library.containsKey(itemID)){
 			if(library.get(itemID).getQuantity()>0){
 				if(borrowers.containsKey(userID)){

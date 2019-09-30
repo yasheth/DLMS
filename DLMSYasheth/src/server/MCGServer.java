@@ -25,14 +25,23 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import org.omg.CORBA.ORB;
+import org.omg.CosNaming.NameComponent;
+import org.omg.CosNaming.NamingContextExt;
+import org.omg.CosNaming.NamingContextExtHelper;
+import org.omg.PortableServer.POA;
+import org.omg.PortableServer.POAHelper;
+
 import elements.Book;
-import serverinterface.LibraryInterface;
+import repository.LibraryInterface;
+import repository.LibraryInterfaceHelper;
+import repository.LibraryInterfacePOA;
 
 /**
  * @author Yash Sheth
  *
  */
-public class MCGServer implements LibraryInterface {
+public class MCGServer extends LibraryInterfacePOA {
 
 	static HashMap<String, Book> library = new HashMap<>();
 	static HashMap<String, ArrayList<String>> waitlist = new HashMap<>();
@@ -44,7 +53,7 @@ public class MCGServer implements LibraryInterface {
 	public static void main(String args[]) throws Exception {
 		Runnable task = () -> {
 			try {
-				mcgserver.activateServer();
+				mcgserver.activateServer(args);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -65,31 +74,62 @@ public class MCGServer implements LibraryInterface {
 		thread2.start();
 	}
 
+	private ORB orb;
+
+	public void setORB(ORB orb_val) {
+		orb = orb_val;
+	}
+
 	/**
 	 * @throws AlreadyBoundException
 	 * @throws IOException
 	 * 
 	 */
-	private static void activateServer() throws AlreadyBoundException, IOException {
+	private static void activateServer(String args[]) throws AlreadyBoundException, IOException {
 
-		Registry registry = LocateRegistry.createRegistry(4444);
-		Remote obj = UnicastRemoteObject.exportObject(mcgserver, 4444);
-		registry.bind(serverNickName, obj);
-		if (Files.exists(Paths.get("src/server/logs/" + serverNickName + "Log.txt"))) {
-			mcgserver.writeLog("McGill Server is Back Online!\n");
-		} else {
-			PrintWriter writer = new PrintWriter("src/server/logs/" + serverNickName + "Log.txt", "UTF-8");
-			mcgserver.writeLog("McGill Server is Online");
-			writer.close();
+		try {
+			// create and initialize the ORB //// get reference to rootpoa &amp;
+			// activate
+			// the POAManager
+			ORB orb = ORB.init(args, null);
+			// -ORBInitialPort 1050 -ORBInitialHost localhost
+			POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
+			rootpoa.the_POAManager().activate();
+
+			// create servant and register it with the ORB
+			mcgserver.setORB(orb);
+
+			// get object reference from the servant
+			org.omg.CORBA.Object ref = rootpoa.servant_to_reference(mcgserver);
+			LibraryInterface href = LibraryInterfaceHelper.narrow(ref);
+
+			org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+			NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
+
+			NameComponent path[] = ncRef.to_name("MCG");
+			ncRef.rebind(path, href);
+
+			System.out.println("McGill Server is Online!");
+			System.out.println(mcgserver.addItem("Server", "MCG0001", "init", 1));
+			System.out.println(mcgserver.addItem("Server", "MCG9999", "mcg", 10));
+			System.out.println(mcgserver.addItem("Server", "MCG1234", "java", 100));
+
+			for (;;) {
+				orb.run();
+			}
 		}
-		System.out.println("McGill Server is Online!");
-		System.out.println(mcgserver.addItem("Server", "MCG0001", "init", 1));
-		System.out.println(mcgserver.addItem("Server", "MCG4444", "mcg", 10));
-		System.out.println(mcgserver.addItem("Server", "MCG1234", "java", 100));
+
+		catch (Exception e) {
+			System.err.println("ERROR: " + e);
+			e.printStackTrace(System.out);
+		}
+
+		System.out.println("MCGServer Exiting ...");
+
 	}
 
 	@Override
-	public synchronized String connect(String userID) throws RemoteException, IOException {
+	public synchronized String connect(String userID) {
 		System.out.println("server connect request received from : " + userID);
 		if (userID.startsWith("MCG")) {
 			System.out.println(userID + " connected to the server");
@@ -105,8 +145,7 @@ public class MCGServer implements LibraryInterface {
 	}
 
 	@Override
-	public synchronized String addItem(String managerID, String itemID, String itemName, int quantity)
-			throws RemoteException, IOException {
+	public synchronized String addItem(String managerID, String itemID, String itemName, int quantity) {
 		if (library.containsKey(itemID)) {
 			Book newBookDetails = library.get(itemID);
 			int newQuantity = newBookDetails.getQuantity() + quantity;
@@ -125,8 +164,7 @@ public class MCGServer implements LibraryInterface {
 	}
 
 	@Override
-	public synchronized String removeItem(String managerID, String itemID, int quantity)
-			throws RemoteException, IOException {
+	public synchronized String removeItem(String managerID, String itemID, int quantity) {
 		if (library.containsKey(itemID)) {
 			if (quantity == -1) {
 				try {
@@ -177,7 +215,7 @@ public class MCGServer implements LibraryInterface {
 	}
 
 	@Override
-	public synchronized String listItemAvailability(String managerID) throws RemoteException, IOException {
+	public synchronized String listItemAvailability(String managerID) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n\n------LIST OF BOOKS IN LIBRARY------\n");
 		for (HashMap.Entry<String, Book> entry : library.entrySet()) {
@@ -190,11 +228,10 @@ public class MCGServer implements LibraryInterface {
 	}
 
 	@Override
-	public synchronized String borrowItem(String userID, String itemID)
-			throws RemoteException, IOException, NotBoundException {
+	public synchronized String borrowItem(String userID, String itemID) {
 		if (library.containsKey(itemID)) {
 			boolean borrowedFlag = false;
-			
+
 			if (borrowers.containsKey(userID)) {
 				ArrayList<Book> newBookList = borrowers.get(userID);
 
@@ -209,7 +246,7 @@ public class MCGServer implements LibraryInterface {
 					}
 				}
 			}
-			
+
 			if (!borrowedFlag && library.get(itemID).getQuantity() > 0) {
 				Book requiredBook = library.get(itemID);
 
@@ -235,7 +272,8 @@ public class MCGServer implements LibraryInterface {
 				}
 
 			} else {
-				fileContent = userID + " requested " + itemID+ " from the library. No copies available.  BORROW - FAILED";
+				fileContent = userID + " requested " + itemID
+						+ " from the library. No copies available.  BORROW - FAILED";
 				writeLog(fileContent);
 				if (waitlist.containsKey(itemID)) {
 					if (waitlist.get(itemID).contains(userID))
@@ -269,8 +307,7 @@ public class MCGServer implements LibraryInterface {
 	}
 
 	@Override
-	public synchronized String findItem(String userID, String itemName)
-			throws RemoteException, IOException, NotBoundException {
+	public synchronized String findItem(String userID, String itemName) {
 		StringBuilder sb = new StringBuilder();
 		fileContent = userID + " requested to find Book with title '" + itemName + "' from the library.";
 		writeLog(fileContent);
@@ -290,8 +327,7 @@ public class MCGServer implements LibraryInterface {
 			return sb.toString();
 	}
 
-	public synchronized String serverRequestFind(String userID, String itemName)
-			throws RemoteException, IOException, NotBoundException {
+	public synchronized String serverRequestFind(String userID, String itemName) {
 		StringBuilder sb = new StringBuilder();
 		fileContent = userID + " requested to find Book with title '" + itemName + "' from the library.";
 		writeLog(fileContent);
@@ -305,8 +341,7 @@ public class MCGServer implements LibraryInterface {
 	}
 
 	@Override
-	public synchronized String returnItem(String userID, String itemID)
-			throws RemoteException, IOException, NotBoundException {
+	public synchronized String returnItem(String userID, String itemID) {
 		if (borrowers.containsKey(userID)) {
 			for (Book b : borrowers.get(userID)) {
 				if (b.getID().equals(itemID)) {
@@ -342,8 +377,7 @@ public class MCGServer implements LibraryInterface {
 	}
 
 	@Override
-	public synchronized String addToWaitlist(String userID, String itemID)
-			throws RemoteException, IOException, NotBoundException {
+	public synchronized String addToWaitlist(String userID, String itemID) {
 		if (itemID.startsWith("CON")) {
 			contactOtherServer("WAIT" + userID + itemID, 3333);
 
@@ -364,7 +398,7 @@ public class MCGServer implements LibraryInterface {
 		return fileContent;
 	}
 
-	public synchronized void checkWaitlist(String itemID) throws RemoteException, IOException {
+	public synchronized void checkWaitlist(String itemID) {
 		int newQuantity = library.get(itemID).getQuantity();
 		ArrayList<String> queue = waitlist.get(itemID);
 
@@ -409,10 +443,15 @@ public class MCGServer implements LibraryInterface {
 			return 0;
 	}
 
-	public synchronized void writeLog(String logData) throws IOException {
+	public synchronized void writeLog(String logData) {
 		logData = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()) + " : " + logData + "\n";
-		Files.write(Paths.get("src/server/logs/" + serverNickName + "Log.txt"), logData.getBytes(),
-				StandardOpenOption.APPEND);
+		try {
+			Files.write(Paths.get("src/server/logs/" + serverNickName + "Log.txt"), logData.getBytes(),
+					StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public String contactOtherServer(String message, int serverPort) {
@@ -457,7 +496,7 @@ public class MCGServer implements LibraryInterface {
 				System.out.println("REQUEST MESSAGE" + requestMessage);
 				requestMessage = new String(request.getData(), 0, request.getLength(), "UTF-8");
 				if (requestMessage.startsWith("FIND")) {
-					
+
 					response = serverRequestFind(requestMessage.substring(4, 12), requestMessage.substring(12));
 				} else if (requestMessage.startsWith("BORR")) {
 					response = borrowItem(requestMessage.substring(4, 12), requestMessage.substring(12));
@@ -495,59 +534,64 @@ public class MCGServer implements LibraryInterface {
 		}
 	}
 
-	public String exchangeItem(String userID, String newItemID, String oldItemID)
-			throws RemoteException, IOException, NotBoundException {
+	public String exchangeItem(String userID, String oldItemID, String newItemID) {
 		boolean oldFlag = false, newFlag = false, validFlag = false;
-		
+
 		if (oldItemID.startsWith(serverNickName)) {
-			if(oldBookCheck(userID,oldItemID).equals("true"))
-				oldFlag=true;
-		}else if(oldItemID.startsWith("CON")){
-			if(contactOtherServer("OLDB"+userID+oldItemID,3333).equals("true"))
-				oldFlag=true;
-		}else if(oldItemID.startsWith("MON")){
-			if(contactOtherServer("OLDB"+userID+oldItemID,5555).equals("true"))
-				oldFlag=true;
+			if (oldBookCheck(userID, oldItemID).equals("true"))
+				oldFlag = true;
+		} else if (oldItemID.startsWith("CON")) {
+			if (contactOtherServer("OLDB" + userID + oldItemID, 3333).equals("true"))
+				oldFlag = true;
+		} else if (oldItemID.startsWith("MON")) {
+			if (contactOtherServer("OLDB" + userID + oldItemID, 5555).equals("true"))
+				oldFlag = true;
 		}
-		
+
 		if (newItemID.startsWith(serverNickName)) {
-			if(newBookCheck(userID,newItemID).equals("true"))
-				newFlag=true;
-		}else if(newItemID.startsWith("CON")){
-			if(contactOtherServer("NEWB"+userID+newItemID,3333).equals("true"))
-				newFlag=true;
-		}else if(newItemID.startsWith("MON")){
-			if(contactOtherServer("NEWB"+userID+newItemID,5555).equals("true"))
-				newFlag=true;
+			if (newBookCheck(userID, newItemID).equals("true"))
+				newFlag = true;
+		} else if (newItemID.startsWith("CON")) {
+			if (contactOtherServer("NEWB" + userID + newItemID, 3333).equals("true"))
+				newFlag = true;
+		} else if (newItemID.startsWith("MON")) {
+			if (contactOtherServer("NEWB" + userID + newItemID, 5555).equals("true"))
+				newFlag = true;
 		}
-		
-		if (userID.startsWith(serverNickName)) {
-				validFlag=true;
-		}else if(userID.startsWith("CON")){
-			if(contactOtherServer("CHEC"+userID,3333).equals("0"))
-				newFlag=true;
-		}else if(userID.startsWith("MON")){
-			if(contactOtherServer("CHEC"+userID,5555).equals("0"))
-				newFlag=true;
+
+		if (newItemID.substring(0, 3).equals(oldItemID.substring(0, 3))) {
+			validFlag = true;
+		} else {
+			if (!newItemID.startsWith(serverNickName)) {
+				if (newItemID.startsWith("CON")) {
+					if (contactOtherServer("CHEC" + userID, 3333).equals("0"))
+						validFlag = true;
+				}
+				if (newItemID.startsWith("MON")) {
+					if (contactOtherServer("CHEC" + userID, 5555).equals("0"))
+						validFlag = true;
+				}
+			} else {
+				validFlag = true;
+			}
 		}
-		
-		
-		if(oldFlag&&newFlag&&validFlag){
-			fileContent="Initiating Exchange Sequence";
-			fileContent+=returnItem(userID, oldItemID)+"\n";
-			fileContent+=borrowItem(userID, newItemID)+"\n";
-			fileContent="Exchange Sequence Successfull";
+
+		if (oldFlag && newFlag && validFlag) {
+			fileContent = "Initiating Exchange Sequence";
+			fileContent += returnItem(userID, oldItemID) + "\n";
+			fileContent += borrowItem(userID, newItemID) + "\n";
+			fileContent = "Exchange Sequence Successfull";
 			writeLog(fileContent);
 			return fileContent;
-		}else{
-			fileContent="Exchange Sequence Failed. One or more requirements dont match. Try Again";
+		} else {
+			fileContent = "Exchange Sequence Failed. One or more requirements dont match. Try Again";
 			writeLog(fileContent);
 			return fileContent;
 		}
 	}
 
 	@Override
-	public String oldBookCheck(String userID, String itemID) throws RemoteException, IOException, NotBoundException {
+	public String oldBookCheck(String userID, String itemID) {
 		if (itemID.startsWith(serverNickName)) {
 			if (borrowers.containsKey(userID)) {
 				for (Book b : borrowers.get(userID)) {
@@ -561,17 +605,17 @@ public class MCGServer implements LibraryInterface {
 	}
 
 	@Override
-	public String newBookCheck(String userID, String itemID) throws RemoteException, IOException, NotBoundException {
-		if(library.containsKey(itemID)){
-			if(library.get(itemID).getQuantity()>0){
-				if(borrowers.containsKey(userID)){
+	public String newBookCheck(String userID, String itemID) {
+		if (library.containsKey(itemID)) {
+			if (library.get(itemID).getQuantity() > 0) {
+				if (borrowers.containsKey(userID)) {
 					for (Book b : borrowers.get(userID)) {
 						if (b.getID().equals(itemID)) {
 							return "falsUser already has the new requested item";
 						}
 					}
 					return "true";
-				}else{
+				} else {
 					return "true";
 				}
 			}

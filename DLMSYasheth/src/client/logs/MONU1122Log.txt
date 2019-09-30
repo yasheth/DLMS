@@ -1,0 +1,17 @@
+MONU1122 LOG FILE
+User is Online
+2019.03.23.12.12.22 : Connected to Montreal Library Server.
+Welcome MONU1122
+2019.03.23.12.12.34 : MONU1122 borrowed CON6231 from the library. Happy Reading!
+2019.03.23.12.12.44 : MONU1122 borrowed MON6231 from the library. Happy Reading!
+2019.03.23.12.13.07 : Exchange Sequence Successfull
+2019.03.23.12.13.19 : MON6231 : Distributed, Quantity:- 0
+CON6231 : Distributed, Quantity:- 1
+
+2019.03.23.12.13.29 : Disconnected!
+2019.03.23.12.14.52 : User is Back Online!
+
+2019.03.23.12.14.52 : Connected to Montreal Library Server.
+Welcome MONU1122
+2019.03.23.12.15.01 : Book returned Successfully.
+2019.03.23.12.15.07 : Disconnected!

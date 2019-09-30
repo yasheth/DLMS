@@ -1,0 +1,28 @@
+MCGU8888 LOG FILE
+User is Online
+2019.03.02.17.50.45 : Connected to McGill Library Server.
+Welcome MCGU8888
+2019.03.02.17.50.50 : MCGU8888 borrowed MCG0001 from the library. Happy Reading!
+2019.03.02.17.50.55 : MCG0001 : init, Quantity:- 0
+CON0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.02.17.54.17 : User is Back Online!
+
+2019.03.02.17.54.18 : Connected to McGill Library Server.
+Welcome MCGU8888
+2019.03.02.17.54.22 : MCGU8888 borrowed MCG0001 from the library. Happy Reading!
+2019.03.02.17.54.24 : MCG0001 : init, Quantity:- 0
+CON0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.02.17.54.48 : Book returned Successfully.
+2019.03.02.17.54.53 : MCG0001 : init, Quantity:- 0
+CON0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.02.17.55.25 : MCG0001 : init, Quantity:- 1
+CON0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1
+2019.03.02.17.55.29 : MCGU8888 borrowed MCG0001 from the library. Happy Reading!
+2019.03.02.17.55.56 : Book returned Successfully.
+2019.03.02.17.55.59 : MCG0001 : init, Quantity:- 0
+CON0001 : init, Quantity:- 1
+MON0001 : init, Quantity:- 1

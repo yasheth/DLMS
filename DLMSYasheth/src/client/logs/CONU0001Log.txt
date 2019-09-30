@@ -11,3 +11,18 @@ MON1234 : java, Quantity:- 100
 2019.03.02.17.46.14 : CON1234 : java, Quantity:- 100
 MCG1234 : java, Quantity:- 100
 MON1234 : java, Quantity:- 100
+2019.03.05.19.24.36 : User is Back Online!
+
+2019.03.05.21.53.32 : User is Back Online!
+
+2019.03.05.21.53.32 : Connected to Concordia Library Server.
+Welcome CONU0001
+2019.03.05.21.53.53 : CONU0001 borrowed CON1234 from the library. Happy Reading!
+2019.03.05.21.57.25 : Disconnected!
+2019.03.23.09.47.18 : User is Back Online!
+
+2019.03.23.09.47.18 : Connected to Concordia Library Server.
+Welcome CONU0001
+2019.03.23.09.47.38 : Exchange Sequence Failed. One or more requirements dont match. Try Again
+2019.03.23.09.47.43 : CONU0001 borrowed CON0001 from the library. Happy Reading!
+2019.03.23.09.47.51 : Exchange Sequence Failed. One or more requirements dont match. Try Again

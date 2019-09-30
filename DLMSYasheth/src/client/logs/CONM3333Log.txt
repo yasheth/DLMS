@@ -1,0 +1,15 @@
+CONM3333 LOG FILE
+Manager is Online
+2019.03.23.12.11.20 : Connected to Concordia Library Server.
+Welcome CONM3333
+2019.03.23.12.11.32 : CONM3333 added CON6231 :Distributed, Quantity: 2 ADDITEM - COMPLETED
+2019.03.23.12.11.48 : CONM3333 added CON6651 :ADT, Quantity: 2 ADDITEM - COMPLETED
+2019.03.23.12.11.52 : 
+
+------LIST OF BOOKS IN LIBRARY------
+CON0001 :init , Quantity:- 1
+CON9999 :con , Quantity:- 10
+CON1234 :java , Quantity:- 100
+CON6231 :Distributed , Quantity:- 2
+CON6651 :ADT , Quantity:- 2
+

@@ -8,3 +8,5 @@ Welcome MCGU1234
 2019.02.19.14.38.52 : Connected to McGill Library Server.
 Welcome MCGU1234
 2019.02.19.14.40.01 : Book returned Successfully.
+2019.03.05.21.32.29 : User is Back Online!
+

@@ -1,0 +1,11 @@
+MCGU5555 LOG FILE
+User is Online
+2019.03.23.12.13.42 : Connected to McGill Library Server.
+Welcome MCGU5555
+2019.03.23.12.14.06 : MCGU5555 borrowed CON6651 from the library. Happy Reading!
+2019.03.23.12.14.19 : Disconnected!
+2019.03.23.12.15.17 : User is Back Online!
+
+2019.03.23.12.15.17 : Connected to McGill Library Server.
+Welcome MCGU5555
+2019.03.23.12.15.36 : Exchange Sequence Failed. One or more requirements dont match. Try Again
